@@ -1,3 +1,11 @@
+/***
+	BASE DE DATOS 1
+	-----------------------------------
+	Oscar Estrada		20565
+	Axel Lopez			20768
+	Luis Gonzales		20008
+***/
+
 CREATE TABLE usuarios(
 	id				BIGSERIAL PRIMARY KEY,
 	nombres			VARCHAR(50),
@@ -48,6 +56,7 @@ CREATE TABLE contenido(
 	id			BIGSERIAL PRIMARY KEY,
 	id_pelicula	BIGINT,
 	id_perfil	BIGINT,
+	tiempo		INT,
 	FOREIGN KEY (id_pelicula) REFERENCES peliculas_series(id) ON DELETE CASCADE,
 	FOREIGN KEY (id_perfil) REFERENCES usuarios(id) ON DELETE CASCADE
 );
