@@ -1,0 +1,13 @@
+Usuario -> id, nombres, correo, contraseña, tipo
+Perfil -> id, nombre, id_usuario, activo
+Favoritos -> id, id_pelicula, id_perfil
+Contenido -> id, id_pelicula, id_perfil, tiempo
+Sugerencias -> id, id_categoria, id_perfil
+Suscripciones -> id, tipo, fecha_inicio, fecha_caducidad, (dia_pago), id_usuario
+Categorias -> id, nombre
+Categoria_pelicula -> id, id_categoria, id_pelicula
+Peliculas_series -> id, nombre, id_director, tipo, fecha_estreno, descripcion, link, duracion
+Actores -> id, nombre
+Actores_Peliculas -> id, id_actores, id_pelicula
+Premios -> id, nombre, id_pelicula
+Director -> id, nombre
