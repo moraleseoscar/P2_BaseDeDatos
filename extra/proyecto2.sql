@@ -6,11 +6,11 @@
 	Luis Gonzales		20008
 ***/
 
-CREATE TABLE usuarios(
+CREATE TABLE users(
 	id				BIGSERIAL PRIMARY KEY,
-	nombres			VARCHAR(50),
-	correo			VARCHAR(50),
-	contrasena		VARCHAR(75),
+	nombre			VARCHAR(50),
+	email			VARCHAR(50),
+	password		VARCHAR(75),
 	tipo			VARCHAR(50)
 );
 
@@ -19,7 +19,7 @@ CREATE TABLE perfil(
 	nombre		VARCHAR(255),
 	id_usuario	BIGINT,
 	activo		BOOLEAN,
-	FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
+	FOREIGN KEY (id_usuario) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE director(
@@ -49,7 +49,7 @@ CREATE TABLE favoritos(
 	id_pelicula	BIGINT,
 	id_perfil	BIGINT,
 	FOREIGN KEY (id_pelicula) REFERENCES peliculas_series(id) ON DELETE CASCADE,
-	FOREIGN KEY (id_perfil) REFERENCES usuarios(id) ON DELETE CASCADE
+	FOREIGN KEY (id_perfil) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE contenido(
@@ -58,7 +58,7 @@ CREATE TABLE contenido(
 	id_perfil	BIGINT,
 	tiempo		INT,
 	FOREIGN KEY (id_pelicula) REFERENCES peliculas_series(id) ON DELETE CASCADE,
-	FOREIGN KEY (id_perfil) REFERENCES usuarios(id) ON DELETE CASCADE
+	FOREIGN KEY (id_perfil) REFERENCES users(id) ON DELETE CASCADE
 );
 
 
@@ -67,7 +67,7 @@ CREATE TABLE sugerencias(
 	id_categoria	BIGINT,
 	id_perfil		BIGINT,
 	FOREIGN KEY (id_categoria) REFERENCES categorias(id) ON DELETE CASCADE,
-	FOREIGN KEY (id_perfil) REFERENCES usuarios(id) ON DELETE CASCADE
+	FOREIGN KEY (id_perfil) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE suscripciones(
@@ -79,7 +79,7 @@ CREATE TABLE suscripciones(
 	dia pago		DATE,
 	**/
 	id_usuario		BIGINT,
-	FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
+	FOREIGN KEY (id_usuario) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE categoria_pelicula(
@@ -109,6 +109,3 @@ CREATE TABLE premios(
 	id_pelicula	BIGINT,
 	FOREIGN KEY (id_pelicula) REFERENCES peliculas_series(id) ON DELETE CASCADE
 );
-
-
-
