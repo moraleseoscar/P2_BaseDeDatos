@@ -1,46 +1,57 @@
-<div>
-    <div class="container register">
+<div class="top">
+    <div class="container">
         <div class="row">
-            <div class="col-md-3 register-left">
-                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
-                <h3>Welcome</h3>
-                <p>You are 30 seconds away from earning your own money!</p>
-                <button routerLink="/login" routerLinkActive="active" class="btn-primary">
-                    Login
-                </button>
+            <div class="col-8">
+                <div class="title">Registro de usuario</div>
             </div>
-            <div class="col-md-9 register-right">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading">Apply as a Employee</h3>
-                        <div class="row register-form">
-                            <form (ngSubmit)="register()" [formGroup]="register_form">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" formControlName="email"
-                                            placeholder="Correo *" value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" formControlName="nombre"
-                                            placeholder="Nombre *" value="" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" formControlName="password"
-                                            placeholder="Password *" value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" placeholder="Confirmar Password *"
-                                            formControlName="password_confirmation" value="" />
-                                    </div>
-                                    <input type="submit" class="btnRegister" value="Register" />
-                                </div>
-                            </form>
-                        </div>
+            <div class="col-4" style="text-align: right">
+                <button type="button" class="btn btn-link text-white" routerLink="/login"> ⇦ Volver</button>
+            </div>
+        </div>
+        <div class="content">
+            <form (ngSubmit)="register()" [formGroup]="register_form">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Nombre</span>
+                        <input type="text" class="form-control" formControlName="nombre" placeholder="Ingresa su nombre" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Correo</span>
+                        <input type="text" class="form-control" formControlName="email" placeholder="Ingresa su email" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Contraseña</span>
+                        <input type="text" class="form-control" formControlName="password" placeholder="Ingresa su contraseña" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Confirmar contraseña</span>
+                        <input type="text" class="form-control" formControlName="password_confirmation" placeholder="Confirma tu contraseña" required>
                     </div>
                 </div>
-            </div>
+                <div class="profile-details">
+                    <input type="radio" id="dot-1">
+                    <input type="radio" id="dot-2">
+                    <input type="radio" id="dot-3">
+                    <span class="profile-title">Seleccione su plan</span>
+                    <div class="category">
+                        <label for="dot-1">
+                            <span class="dot one"></span>
+                            <span class="gender">Gratis</span>
+                        </label>
+                        <label for="dot-2">
+                            <span class="dot two"></span>
+                            <span class="gender">Pareja</span>
+                        </label>
+                        <label for="dot-3">
+                            <span class="dot three"></span>
+                            <span class="gender">Familiar</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Registrar">
+                </div>
+            </form>
         </div>
     </div>
 </div>
