@@ -25,7 +25,6 @@ class UserController extends Controller
         $access_token = $usuario->createToken('authToken')->accessToken;
     
         return response([
-            'usuario' => $usuario,
             'access_token' => $access_token
         ]);
     }
@@ -42,11 +41,11 @@ class UserController extends Controller
 
         $access_token = auth()->user()->createToken('authToken')->accessToken;
 
-        return response(['user' => auth()->user(), 'access_token' => $access_token]);
+        return response(['message' => 'Sesión iniciada exitósamente', 'access_token' => $access_token]);
     }
 
     public function get() {
-        return response(auth()->user());
+        return response(auth()->user()->id);
     }
 
 }

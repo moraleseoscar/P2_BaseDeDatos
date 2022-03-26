@@ -19,6 +19,7 @@ CREATE TABLE perfil(
 	nombre		VARCHAR(255),
 	id_usuario	BIGINT,
 	activo		BOOLEAN,
+	icon		VARCHAR(10),
 	FOREIGN KEY (id_usuario) REFERENCES users(id) ON DELETE CASCADE
 );
 
