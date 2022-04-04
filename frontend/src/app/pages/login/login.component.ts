@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { GeneralService } from 'src/app/services/general.service';
 export class LoginComponent implements OnInit {
   public login_form: FormGroup; 
 
-  constructor(private general_service: GeneralService) { 
+  constructor(private general_service: GeneralService, private router: Router) { 
     this.login_form = this.createFormGroup();
   }
 
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
     this.general_service.post('login', this.login_form.value).then(res => {
       console.log(res);
       localStorage.setItem('token', res.access_token);
+      this.router.navigate(['/profiles']);
     }).catch(err => console.log(err));
   }
 
