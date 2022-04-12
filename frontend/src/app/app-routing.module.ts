@@ -7,7 +7,9 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule) },
   { path: 'profiles', canActivate: [ClientGuard], loadChildren: () => import('./pages/profiles/profiles.module').then(m => m.ProfilesModule) },
-  { path: 'home', canActivate: [ClientGuard], loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) },
+  { path: 'admin/users', canActivate: [ClientGuard], loadChildren: () => import('./pages/admin/users/users.module').then(m => m.UsersModule) },
+  { path: 'admin/addnew', canActivate: [ClientGuard], loadChildren: () => import('./pages/admin/addnew/addnew.module').then(m => m.AddnewModule) },
+  { path: 'home', canActivate: [ClientGuard], loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) }
 ];
 
 @NgModule({
