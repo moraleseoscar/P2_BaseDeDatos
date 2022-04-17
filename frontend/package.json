@@ -24,9 +24,11 @@
     "bootstrap": "^5.1.3",
     "bootstrap-icons": "^1.8.1",
     "jquery": "^3.6.0",
+    "ngx-spinner": "^13.1.1",
     "popper.js": "^1.16.1",
     "rxjs": "~7.5.0",
     "squery": "^0.3.2",
+    "sweetalert2": "^11.4.8",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
