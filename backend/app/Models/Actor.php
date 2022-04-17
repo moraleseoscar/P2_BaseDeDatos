@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Actor extends Model
 {
     use HasFactory;
+    protected $table = 'actores';
+    protected $fillable = ['id', 'nombre'];
+    public $timestamps = false;
 }

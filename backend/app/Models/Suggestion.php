@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Suggestion extends Model
 {
     use HasFactory;
+    protected $table = 'perfil';
+    protected $fillable = ['id', 'id_categoria', 'id_perfil'];
+    public $timestamps = false;
 }
