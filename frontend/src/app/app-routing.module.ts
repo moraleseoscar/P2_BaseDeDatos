@@ -120,6 +120,7 @@ const routes: Routes = [{
     canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/anuncio/anuncio.module').then(m => m.AnuncioModule) 
   },
+  { path: 'reports', loadChildren: () => import('./pages/admin/reports/reports.module').then(m => m.ReportsModule) }
 
   ];
 

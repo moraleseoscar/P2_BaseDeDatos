@@ -41,14 +41,15 @@ Route::get('/verify-type', 'App\Http\Controllers\User\UserController@verifyType'
 Route::get('/user-profiles', 'App\Http\Controllers\Profile\ProfileController@getUserProfiles')->middleware('auth:api');
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
+Route::apiResource('/reports', ReportsController::class)->middleware('auth:api');
+//Aqui falta el de la paigina de las querys
 
+Route::get('/top-10-categories/{name}/{name2}', 'App\Http\Controllers\Reports\ReportsController@getTop10Cat')->middleware('auth:api');
 
-Route::get('/top-10-categories/:id/:id2', 'App\Http\Controllers\Reports\ReportsController@getTop10Cat')->middleware('auth:api');
-
-Route::get('/reprod-por-cat/:id/:id2', 'App\Http\Controllers\Reports\ReportsController@getReproduccionesPorCategoria')->middleware('auth:api');
+Route::get('/reprod-por-cat/{name}/{name2}', 'App\Http\Controllers\Reports\ReportsController@getReproduccionesPorCategoria')->middleware('auth:api');
 
 Route::get('/top-10-actors-directors', 'App\Http\Controllers\Reports\ReportsController@getTop10ActorAndDirectorsForEstandarAndAdvance')->middleware('auth:api');
 
 Route::get('/created-account-6-months', 'App\Http\Controllers\Reports\ReportsController@getCantidadCreatedAdvanAcount')->middleware('auth:api');
 
-Route::get('/hora-pico-por-fecha/:id', 'App\Http\Controllers\Reports\ReportsController@getHoraPicoPorFecha')->middleware('auth:api');
+Route::get('/hora-pico-por-fecha/{name}', 'App\Http\Controllers\Reports\ReportsController@getHoraPicoPorFecha')->middleware('auth:api');
