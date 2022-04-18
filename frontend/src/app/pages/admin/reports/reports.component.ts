@@ -9,7 +9,6 @@ import { GeneralService } from 'src/app/services/general.service';
   styleUrls: ['./reports.component.scss']
 })
 export class ReportsComponent implements OnInit {
-
   public query1: Array<any> = [];
   public query2: Array<any> = [];
   public query3: Array<any> = [];
@@ -23,31 +22,34 @@ export class ReportsComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
-    this.getActors();
-    this.getQuery1();
-    this.getQuery2(); 
     this.getQuery3();
     this.getQuery3_1();
     this.getQuery4();
-    this.getQuery5();
   }
-  getActors() {
-    this.general_service.getAuth('film').then((res) => {
-      this.actors = res.data;
-      this.spinner.hide();
-    });
-  }
+
   getQuery1() {
-    this.general_service.getAuth('top-10-categories/2022-04-01/2022-04-20').then((res) => {
-      this.query1 = res.data["top10"];
-      this.spinner.hide();
-    });
+      let fecha_incial = (<HTMLInputElement>document.getElementById("fecha_inicio_tabla1")).value;
+      let fecha_final = (<HTMLInputElement>document.getElementById("fecha_final_tabla1")).value;
+      if(fecha_final && fecha_incial){
+        this.general_service.getAuth(`top-10-categories/${fecha_incial}/${fecha_final}`).then((res) => {
+        this.query1 = res.data["top10"];
+        this.spinner.hide();
+        });
+      }else{
+        console.log("No se ingreso alguna fecha")
+      }
   }
   getQuery2() {
-    this.general_service.getAuth('reprod-por-cat/2022-04-01/2022-04-20').then((res) => {
-      this.query2 = res.data["repPorCat"];
-      this.spinner.hide();
-    });
+    let fecha_incial = (<HTMLInputElement>document.getElementById("fecha_inicio_tabla2")).value;
+    let fecha_final = (<HTMLInputElement>document.getElementById("fecha_final_tabla2")).value;
+    if(fecha_final && fecha_incial){
+        this.general_service.getAuth(`reprod-por-cat/${fecha_incial}/${fecha_final}`).then((res) => {
+        this.query2 = res.data["repPorCat"];
+        this.spinner.hide();
+      });
+    }else{
+      console.log("No se ingreso alguna fecha")
+    }
   }
   getQuery3() {
     this.general_service.getAuth('top-10-actors-directors').then((res) => {
@@ -68,12 +70,25 @@ export class ReportsComponent implements OnInit {
     });
   }
   getQuery5() {
-    this.general_service.getAuth('hora-pico-por-fecha/2022-04-18').then((res) => {
-      this.query5 = res.data["Hora pico para la fecha 2022-04-18"];
-      this.spinner.hide();
-    });
+    let fecha = (<HTMLInputElement>document.getElementById("fecha_tabla5")).value;
+    if(fecha){
+      this.general_service.getAuth(`hora-pico-por-fecha/${fecha}`).then((res) => {
+        this.query5 = res.data[`Hora pico para la fecha ${fecha}`];
+        this.spinner.hide();
+      });
+    }else{
+      console.log("No se ingreso alguna fecha")
+    }
   }
-
+  sendQ1() {
+    this.getQuery1();
+  }
+  sendQ2() {
+    this.getQuery2();
+  }
+  sendQ5(){
+    this.getQuery5();
+  }
   edit(id: string) {
     this.router.navigate(['admin/director/' + id]);
   }
