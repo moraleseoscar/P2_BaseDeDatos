@@ -23,6 +23,13 @@ CREATE TABLE perfil(
 	FOREIGN KEY (id_usuario) REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE login_fallido (
+	id				BIGSERIAL PRIMARY KEY,
+	id_usuario		BIGINT,
+	veces			INT,
+	FOREIGN KEY (id_usuario) REFERENCES users(id) ON DELETE CASCADE
+);
+
 CREATE TABLE director(
 	id			BIGSERIAL PRIMARY KEY,
 	nombre		VARCHAR(255)
@@ -92,7 +99,7 @@ CREATE TABLE categoria_pelicula(
 );
 
 CREATE TABLE actores(
-	id			BIGINT PRIMARY KEY,
+	id			BIGSERIAL PRIMARY KEY,
 	nombre		VARCHAR(255)
 );
 

@@ -30,9 +30,6 @@ class ActorController extends Controller
             if ($actor_validator->fails()) {
                 return response(['result' => 'fail', 'message' => $actor_validator->errors()], 500);
             }
-
-            /* $data['id_usuario'] = auth()->user()->id;
-            $data['activo'] = true; */
             
             Actor::create($data);
             
