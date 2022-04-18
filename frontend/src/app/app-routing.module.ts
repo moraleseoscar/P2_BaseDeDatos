@@ -46,6 +46,11 @@ const routes: Routes = [{
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
   },
   {
+    path: 'favs',
+    canActivate: [ClientGuard],
+    loadChildren: () => import('./pages/favs/favs.module').then(m => m.FavsModule)
+  },
+  {
     path: 'edit-create-profile',
     canActivate: [ClientGuard],
     loadChildren: () => import('./pages/edit-create-profile/edit-create-profile.module').then(m => m.EditCreateProfileModule)
