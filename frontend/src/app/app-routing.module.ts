@@ -69,8 +69,12 @@ const routes: Routes = [{
     path: 'admin/actor/:id',
     canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/actor/actor.module').then(m => m.ActorModule)
-  }
-];
+  },
+    { path: 'directors', loadChildren: () => import('./pages/admin/directors/directors.module').then(m => m.DirectorsModule) },
+    { path: 'director', loadChildren: () => import('./pages/admin/director/director.module').then(m => m.DirectorModule) },
+    { path: 'director/:id', loadChildren: () => import('./pages/admin/director/director.module').then(m => m.DirectorModule) },
+    { path: 'films', loadChildren: () => import('./pages/admin/films/films.module').then(m => m.FilmsModule) }
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
