@@ -11,6 +11,9 @@ import {
   Router
 } from '@angular/router';
 import {
+  NgxSpinnerService
+} from 'ngx-spinner';
+import {
   GeneralService
 } from 'src/app/services/general.service';
 import Swal from 'sweetalert2';
@@ -23,7 +26,7 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
   public login_form: FormGroup;
 
-  constructor(private general_service: GeneralService, private router: Router) {
+  constructor(private general_service: GeneralService, private router: Router, private spinner: NgxSpinnerService) {
     this.login_form = this.createFormGroup();
   }
 
@@ -37,15 +40,18 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.spinner.show();
     const data = Object.assign(this.login_form.value, {
-      veces: localStorage.getItem('veces') ? parseInt(localStorage.getItem('veces')!) : 0
+      veces: localStorage.getItem('veces') ? parseInt(localStorage.getItem('veces') !) : 0
     });
     this.general_service.post('login', data).then(res => {
       localStorage.setItem('veces', '0');
       localStorage.setItem('token', res.access_token);
+      this.spinner.hide();
       this.router.navigate(['/profiles']);
     }).catch(err => {
-      let veces: string = localStorage.getItem('veces') ? localStorage.getItem('veces')! : '0';
+      this.spinner.hide();
+      let veces: string = localStorage.getItem('veces') ? localStorage.getItem('veces') ! : '0';
       localStorage.setItem('veces', JSON.stringify((parseInt(veces) + 1)));
       console.log(err);
       Swal.fire({

@@ -69,6 +69,11 @@ const routes: Routes = [{
     path: 'admin/actor/:id',
     canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/actor/actor.module').then(m => m.ActorModule)
+  },
+  {
+    path: 'movie-serie/:id',
+    canActivate: [ClientGuard],
+    loadChildren: () => import('./pages/movie-serie/movie-serie.module').then(m => m.MovieSerieModule)
   }
 ];
 

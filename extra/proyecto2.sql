@@ -49,6 +49,7 @@ CREATE TABLE peliculas_series(
 	descripcion		VARCHAR(1000),
 	duracion		VARCHAR(50),
 	link_video		VARCHAR(1000),
+	portada         VARCHAR(1000),
 	FOREIGN KEY (id_director) REFERENCES director(id) ON DELETE CASCADE
 );
 
