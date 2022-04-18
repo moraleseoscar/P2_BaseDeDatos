@@ -88,4 +88,13 @@ class UserController extends Controller
         return response(auth()->user()->id);
     }
 
+    public function verifyType() {
+        try {
+            $tipo = User::where('id', auth()->user()->id)->first();
+            return response(['result' => 'success', 'data' => $tipo->tipo], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
+
 }

@@ -17,6 +17,7 @@ use App\Http\Controllers\Profile\ProfileController;
 */
 Route::get('/user', [UserController::class, 'get'])->middleware('auth:api');
 Route::apiResource('/profile', ProfileController::class)->middleware('auth:api');
+Route::get('/verify-type', 'App\Http\Controllers\User\UserController@verifyType')->middleware('auth:api');
 Route::get('/user-profiles', 'App\Http\Controllers\Profile\ProfileController@getUserProfiles')->middleware('auth:api');
 
 Route::post('/register', [UserController::class, 'register']);
