@@ -1,3 +1,4 @@
+<app-loading></app-loading>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand">
@@ -62,157 +63,17 @@
                     <iframe height="100%" width="100%" src="https://www.youtube.com/embed/KktJrZGDvnw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
+            <div class="row mt-4">
+                <div class="col-md-4" *ngFor="let movie_serie of movies_series">
                     <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="../../../assets/logo.png" alt="Card image cap">
+                        <img class="card-img-top" style="width: 400px; height: 600px;" [src]="movie_serie.portada" alt="Card image cap">
                         <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi neque,
-                                quibusdam, reiciendis beatae, dolor excepturi vitae totam illo in consequatur atque
-                                ipsam hic eveniet? Maiores incidunt nobis mollitia rem aspernatur?</p>
+                            <p class="card-text">{{movie_serie.descripcion | slice:0:197}}...</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-
+                                    <button (click)="show(movie_serie.id)" type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
                                 </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="../../../assets/logo.png" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi neque,
-                                quibusdam, reiciendis beatae, dolor excepturi vitae totam illo in consequatur atque
-                                ipsam hic eveniet? Maiores incidunt nobis mollitia rem aspernatur?</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="../../../assets/logo.png" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi neque,
-                                quibusdam, reiciendis beatae, dolor excepturi vitae totam illo in consequatur atque
-                                ipsam hic eveniet? Maiores incidunt nobis mollitia rem aspernatur?</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="../../../assets/logo.png" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi neque,
-                                quibusdam, reiciendis beatae, dolor excepturi vitae totam illo in consequatur atque
-                                ipsam hic eveniet? Maiores incidunt nobis mollitia rem aspernatur?</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="../../../assets/logo.png" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi neque,
-                                quibusdam, reiciendis beatae, dolor excepturi vitae totam illo in consequatur atque
-                                ipsam hic eveniet? Maiores incidunt nobis mollitia rem aspernatur?</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="../../../assets/logo.png" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi neque,
-                                quibusdam, reiciendis beatae, dolor excepturi vitae totam illo in consequatur atque
-                                ipsam hic eveniet? Maiores incidunt nobis mollitia rem aspernatur?</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="../../../assets/logo.png" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi neque,
-                                quibusdam, reiciendis beatae, dolor excepturi vitae totam illo in consequatur atque
-                                ipsam hic eveniet? Maiores incidunt nobis mollitia rem aspernatur?</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="../../../assets/logo.png" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi neque,
-                                quibusdam, reiciendis beatae, dolor excepturi vitae totam illo in consequatur atque
-                                ipsam hic eveniet? Maiores incidunt nobis mollitia rem aspernatur?</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="../../../assets/logo.png" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi neque,
-                                quibusdam, reiciendis beatae, dolor excepturi vitae totam illo in consequatur atque
-                                ipsam hic eveniet? Maiores incidunt nobis mollitia rem aspernatur?</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
+                                <small class="text-muted">{{movie_serie.duracion}}</small>
                             </div>
                         </div>
                     </div>

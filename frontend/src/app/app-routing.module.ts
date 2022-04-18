@@ -80,20 +80,29 @@ const routes: Routes = [{
     canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/actor/actor.module').then(m => m.ActorModule)
   },
+  {
+    path: 'movie-serie/:id',
+    canActivate: [ClientGuard],
+    loadChildren: () => import('./pages/movie-serie/movie-serie.module').then(m => m.MovieSerieModule)
+  },
   { 
     path: 'admin/directors', 
+    canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/directors/directors.module').then(m => m.DirectorsModule) 
   },
   { 
     path: 'admin/director', 
+    canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/director/director.module').then(m => m.DirectorModule) 
   },
   { 
     path: 'admin/director/:id', 
+    canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/director/director.module').then(m => m.DirectorModule) 
   },
   { 
     path: 'admin/films',
+    canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/films/films.module').then(m => m.FilmsModule) 
   }
 
