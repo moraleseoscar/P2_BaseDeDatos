@@ -13,24 +13,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/admin/actor">Ingresar nuevo</a>
+                    <a class="nav-link" routerLink="/admin/users">Usuarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/admin/actors">Actores</a>
+                    <a class="nav-link" routerLink="/admin/films">Peliculas</a>
                 </li>
-                <li class="nav-item dropdown navbar-right">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Opciones
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="/login">Salir</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/admin/actors">Actores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink="/admin/directors">Directores</a>
                 </li>
             </ul>
         </div>
@@ -38,10 +30,10 @@
 </nav>
 
 <div class="container mt-5">
-    <p class="h1">Tabla de actores</p>
+    <p class="h1">Tabla de directores</p>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Tabla de Actores</h6>
+            <button (click)="create()" class="btn btn-primary btn-sm"><i class="bi bi-person-plus"></i> Ingresar nuevo director</button>
         </div>
         <div class="card-body">
             <div class="table-responsive">

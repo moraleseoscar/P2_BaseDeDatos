@@ -30,4 +30,8 @@ export class ActorsComponent implements OnInit {
     this.router.navigate(['admin/actor/' + id]);
   }
 
+  create(){
+    this.router.navigate(['admin/actor']);
+  }
+
 }

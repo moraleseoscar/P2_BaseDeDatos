@@ -30,4 +30,8 @@ export class DirectorsComponent implements OnInit {
     this.router.navigate(['admin/director/' + id]);
   }
 
+  create(){
+    this.router.navigate(['admin/director']);
+  }
+
 }
