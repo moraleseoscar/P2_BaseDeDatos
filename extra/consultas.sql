@@ -2,7 +2,7 @@
 1. El top 10 de géneros de contenido más visto, y los minutos consumidos para un rango
 de fechas dado
 */
-SELECT * FROM suscripciones
+
 SELECT cat.nombre, SUM(cont.tiempo) as minutos_cons FROM categorias cat
 LEFT JOIN categoria_pelicula cat_pel ON cat.id = cat_pel.id_categoria
 LEFT JOIN contenido cont ON cont.id_pelicula = cat_pel.id_pelicula
@@ -23,7 +23,7 @@ LEFT JOIN users usrs ON usrs.id = prf.id_usuario
 WHERE 	TO_DATE('2022-04-18', 'YYYY-MM-DD')<cont.ultima_vez_visto/*<<<<<----fecha ejemplo, sustituius todo el to date */ 
 AND 	cont.ultima_vez_visto<TO_DATE('2022-04-18', 'YYYY-MM-DD')/*<<<<<----fecha ejemplo, sustituius todo el to date */
 GROUP BY cat.nombre, usrs.tipo
-ORDER BY reprod DESC
+ORDER BY reprod DESC;
 /*
 3. El top 10 de los directores y actores principales de las películas que los perfiles estándar
 y avanzados han visto.
@@ -72,4 +72,3 @@ ORDER BY visualizaciones DESC
 LIMIT 1;
 
 
-SELECT EXTRACT (HOUR FROM CURRENT_TIME)
