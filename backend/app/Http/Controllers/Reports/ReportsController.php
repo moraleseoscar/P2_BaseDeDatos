@@ -13,8 +13,8 @@ class ReportsController extends Controller
                 "SELECT cat.nombre, SUM(cont.tiempo) as minutos_cons FROM categorias cat
                 LEFT JOIN categoria_pelicula cat_pel ON cat.id = cat_pel.id_categoria
                 LEFT JOIN contenido cont ON cont.id_pelicula = cat_pel.id_pelicula
-                WHERE 	TO_DATE($fecha_inicial, 'YYYY-MM-DD')<cont.ultima_vez_visto /*<<<<<----fecha ejemplo, sustituius todo el to date */
-                AND 	cont.ultima_vez_visto<TO_DATE($fecha_final, 'YYYY-MM-DD')/*<<<<<----fecha ejemplo, sustituius todo el to date por la fecha que queres*/
+                WHERE 	TO_DATE('$fecha_inicial', 'YYYY-MM-DD')<cont.ultima_vez_visto /*<<<<<----fecha ejemplo, sustituius todo el to date */
+                AND 	cont.ultima_vez_visto<TO_DATE('$fecha_final', 'YYYY-MM-DD')/*<<<<<----fecha ejemplo, sustituius todo el to date por la fecha que queres*/
                 GROUP BY cat.nombre
                 ORDER BY minutos_cons DESC
                 LIMIT 10"
@@ -27,15 +27,16 @@ class ReportsController extends Controller
     public function getReproduccionesPorCategoria($fecha_inicial, $fecha_final) {
         try {
             $repPorCat = \DB::select(
-                "SELECT cat.nombre, usrs.tipo, COUNT(prf.id) as reprod FROM categorias cat
+                "SELECT cat.nombre, sus.tipo, COUNT(prf.id) as reprod FROM categorias cat
                 LEFT JOIN categoria_pelicula cat_pel ON cat.id = cat_pel.id_categoria
                 LEFT JOIN contenido cont ON cont.id_pelicula = cat_pel.id_pelicula
                 LEFT JOIN perfil prf ON prf.id = cont.id_perfil
                 LEFT JOIN users usrs ON usrs.id = prf.id_usuario
-                WHERE 	TO_DATE($fecha_inicial, 'YYYY-MM-DD')<cont.ultima_vez_visto/*<<<<<----fecha ejemplo, sustituius todo el to date */ 
-                AND 	cont.ultima_vez_visto<TO_DATE($fecha_final', 'YYYY-MM-DD')/*<<<<<----fecha ejemplo, sustituius todo el to date */
-                GROUP BY cat.nombre, usrs.tipo
-                ORDER BY reprod DESC"
+                INNER JOIN suscripciones sus ON sus.id_usuario= usrs.id
+                WHERE 	TO_DATE('$fecha_inicial', 'YYYY-MM-DD')<cont.ultima_vez_visto/*<<<<<----fecha ejemplo, sustituius todo el to date */ 
+                AND 	cont.ultima_vez_visto<TO_DATE('$fecha_final', 'YYYY-MM-DD')/*<<<<<----fecha ejemplo, sustituius todo el to date */
+                GROUP BY cat.nombre, sus.tipo
+                ORDER BY reprod DESC;"
             );
             return response(["result" => 'success', "data" => ["repPorCat" => $repPorCat]], 200);
         } catch (\Exception $e) {
@@ -55,10 +56,10 @@ class ReportsController extends Controller
                 GROUP BY act.nombre
                 ORDER BY visto DESC;"
             );
-            $top10Directors = \DB::select(
+            $top10Directors = \DB::select( 
                 "SELECT dir.nombre,  COUNT(cont.id) AS visto FROM contenido cont
-                INNER JOIN actores_peliculas ac_pe ON cont.id_pelicula = ac_pe.id_pelicula
-                INNER JOIN director dir ON dir.id = ac_pe.id_actores
+                INNER JOIN peliculas_series pe_ser ON cont.id_pelicula = pe_ser.id
+                INNER JOIN director dir ON dir.id = pe_ser.id_director
                 INNER JOIN perfil prf ON prf.id = cont.id_perfil
                 INNER JOIN users usrs ON usrs.id = prf.id_usuario
                 INNER JOIN suscripciones sus ON sus.id_usuario= usrs.id
@@ -85,10 +86,10 @@ class ReportsController extends Controller
     }
     public function getHoraPicoPorFecha($fecha) {
         try {
-            $horaPico = \DB::select(
+            $horaPico = \DB::select(    
                 "SELECT EXTRACT (HOUR FROM ultima_vez_visto) as hora, COUNT(id) AS visualizaciones FROM contenido 
-                WHERE 	TO_DATE($fecha, 'YYYY-MM-DD')-1<ultima_vez_visto 
-                AND 	ultima_vez_visto<TO_DATE($fecha, 'YYYY-MM-DD')+1/*<<<<<----fecha ejemplo, sustituius todo el to date por la fecha que queres*/
+                WHERE 	TO_DATE('$fecha', 'YYYY-MM-DD')-1<ultima_vez_visto 
+                AND 	ultima_vez_visto<TO_DATE('$fecha', 'YYYY-MM-DD')+1/*<<<<<----fecha ejemplo, sustituius todo el to date por la fecha que queres*/
                 GROUP BY hora
                 ORDER BY visualizaciones DESC
                 LIMIT 1"

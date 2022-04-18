@@ -6,8 +6,8 @@ de fechas dado
 SELECT cat.nombre, SUM(cont.tiempo) as minutos_cons FROM categorias cat
 LEFT JOIN categoria_pelicula cat_pel ON cat.id = cat_pel.id_categoria
 LEFT JOIN contenido cont ON cont.id_pelicula = cat_pel.id_pelicula
-WHERE 	TO_DATE('2022-04-18', 'YYYY-MM-DD')<cont.ultima_vez_visto /*<<<<<----fecha ejemplo, sustituius todo el to date */
-AND 	cont.ultima_vez_visto<TO_DATE('2022-04-18', 'YYYY-MM-DD')/*<<<<<----fecha ejemplo, sustituius todo el to date por la fecha que queres*/
+WHERE 	TO_DATE('2022-04-01', 'YYYY-MM-DD')<cont.ultima_vez_visto /*<<<<<----fecha ejemplo, sustituius todo el to date */
+AND 	cont.ultima_vez_visto<TO_DATE('2022-04-20', 'YYYY-MM-DD')/*<<<<<----fecha ejemplo, sustituius todo el to date por la fecha que queres*/
 GROUP BY cat.nombre
 ORDER BY minutos_cons DESC
 LIMIT 10; 
@@ -25,8 +25,8 @@ AND 	cont.ultima_vez_visto<TO_DATE('2022-04-18', 'YYYY-MM-DD')/*<<<<<----fecha e
 GROUP BY cat.nombre, usrs.tipo
 ORDER BY reprod DESC;
 /*
-3. El top 10 de los directores y actores principales de las películas que los perfiles estándar
-y avanzados han visto.
+	3. El top 10 de los directores y actores principales de las películas que los perfiles estándar
+	y avanzados han visto.
 */
 /*
 ACTORES
@@ -43,10 +43,10 @@ ORDER BY visto DESC;
 /*
 DIRECTORES
 */
-
+SELECT * FROM 
 SELECT dir.nombre,  COUNT(cont.id) AS visto FROM contenido cont
-INNER JOIN actores_peliculas ac_pe ON cont.id_pelicula = ac_pe.id_pelicula
-INNER JOIN director dir ON dir.id = ac_pe.id_actores
+INNER JOIN peliculas_series pe_ser ON cont.id_pelicula = pe_ser.id
+INNER JOIN director dir ON dir.id = pe_ser.id_director
 INNER JOIN perfil prf ON prf.id = cont.id_perfil
 INNER JOIN users usrs ON usrs.id = prf.id_usuario
 INNER JOIN suscripciones sus ON sus.id_usuario= usrs.id
