@@ -99,7 +99,7 @@ CREATE TABLE categoria_pelicula(
 );
 
 CREATE TABLE actores(
-	id			BIGINT PRIMARY KEY,
+	id			BIGSERIAL PRIMARY KEY,
 	nombre		VARCHAR(255)
 );
 
