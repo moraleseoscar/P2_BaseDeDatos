@@ -21,7 +21,7 @@ class ProfileController extends Controller
 
     public function getUserProfiles() {
         try {
-            $profiles = Profile::where('id_usuario', auth()->user()->id)->get();
+            $profiles = Profile::where('id_usuario', auth()->user()->id)->where('activo', true)->get();
             $subscription = Subscription::where('id_usuario', auth()->user()->id)->first();
             return response(["result" => 'success', 'profiles' => $profiles, 'subscription' => $subscription], 200);
         } catch (\Exception $e) {

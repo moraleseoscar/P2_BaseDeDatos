@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Subscription;
+use App\Models\LoginFallido;
 
 class UserController extends Controller
 {
@@ -60,10 +61,25 @@ class UserController extends Controller
         ]);
 
         if(!auth()->attempt($validar)) {
-            return response(['message' => 'Invalid Credentials']);
+            return response(['message' => 'Invalid Credentials'], 500);
         }
 
         $access_token = auth()->user()->createToken('authToken')->accessToken;
+
+        try {
+            $login_fallido = LoginFallido::where('id_usuario', auth()->user()->id)->first();
+            $login_fallido->veces = $login_fallido->veces + $request->veces;
+            if(!$login_fallido->save()) {
+                return response(['result' => 'fail', 'message' => 'Error al actualizar intentos fallidos, por favor inténtelo más tarde.'], 500);
+            }
+        } catch(\Exception $e) {
+            $login_fallido = new LoginFallido();
+            $login_fallido->veces = $request->veces;
+            $login_fallido->id_usuario =  auth()->user()->id;
+            if(!$login_fallido->save()) {
+                return response(['result' => 'fail', 'message' => 'Error al actualizar intentos fallidos, por favor inténtelo más tarde.'], 500);
+            }
+        }
 
         return response(['message' => 'Sesión iniciada exitósamente', 'access_token' => $access_token]);
     }
