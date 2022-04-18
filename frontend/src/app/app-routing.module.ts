@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'admin/users', canActivate: [ClientGuard], loadChildren: () => import('./pages/admin/users/users.module').then(m => m.UsersModule) },
   { path: 'admin/addnew', canActivate: [ClientGuard], loadChildren: () => import('./pages/admin/addnew/addnew.module').then(m => m.AddnewModule) },
   { path: 'home', canActivate: [ClientGuard], loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) },
+  { path: 'favs', canActivate: [ClientGuard], loadChildren: () => import('./pages/favs/favs.module').then(m => m.FavsModule) },
   { path: 'edit-create-profile', loadChildren: () => import('./pages/edit-create-profile/edit-create-profile.module').then(m => m.EditCreateProfileModule) },
   { path: 'edit-create-profile/:id', loadChildren: () => import('./pages/edit-create-profile/edit-create-profile.module').then(m => m.EditCreateProfileModule) }
 ];
