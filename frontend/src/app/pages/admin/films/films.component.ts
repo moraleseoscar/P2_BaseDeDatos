@@ -30,5 +30,9 @@ export class FilmsComponent implements OnInit {
     this.router.navigate(['admin/film/' + id]);
   }
 
+  create(){
+    this.router.navigate(['admin/film']);
+  }
+
 }
 

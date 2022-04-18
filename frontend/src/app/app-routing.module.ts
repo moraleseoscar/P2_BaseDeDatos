@@ -36,12 +36,12 @@ const routes: Routes = [{
     loadChildren: () => import('./pages/admin/users/users.module').then(m => m.UsersModule)
   },
   {
-    path: 'admin/addnew',
+    path: 'admin/film',
     canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/addnew/addnew.module').then(m => m.AddnewModule)
   },
   {
-    path: 'admin/addnew:id',
+    path: 'admin/film/:id',
     canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/addnew/addnew.module').then(m => m.AddnewModule)
   },
@@ -81,19 +81,19 @@ const routes: Routes = [{
     loadChildren: () => import('./pages/admin/actor/actor.module').then(m => m.ActorModule)
   },
   { 
-    path: 'directors', 
+    path: 'admin/directors', 
     loadChildren: () => import('./pages/admin/directors/directors.module').then(m => m.DirectorsModule) 
   },
   { 
-    path: 'director', 
+    path: 'admin/director', 
     loadChildren: () => import('./pages/admin/director/director.module').then(m => m.DirectorModule) 
   },
   { 
-    path: 'director/:id', 
+    path: 'admin/director/:id', 
     loadChildren: () => import('./pages/admin/director/director.module').then(m => m.DirectorModule) 
   },
   { 
-    path: 'films',
+    path: 'admin/films',
     loadChildren: () => import('./pages/admin/films/films.module').then(m => m.FilmsModule) 
   }
 
