@@ -27,7 +27,7 @@
             <a class="nav-link text-light" routerLink="/login">Logout <i class="bi bi-box-arrow-right"></i></a>
         </div>
     </div>
-</nav> 
+</nav>
 
 <div class="container mt-5">
     <p class="h1">{{title}} nuevo entretenimiento</p>
@@ -51,11 +51,42 @@
             </div>
         </div><br>
         <div class="form-group">
+            <label>Director</label>
+            <select formControlName="id_director" class="form-select">
+                <option value="" disabled selected>Selecciona un director</option>
+                <option *ngFor="let d of directors" [ngValue]="d.id">{{d.nombre}}</option>
+            </select>
+            <div class="errors" *ngIf="id_director?.invalid && (id_director?.dirty || id_director?.touched)">
+                <span *ngIf="id_director?.errors?.['required']">
+                    <small>El director es requerido.</small>
+                </span>
+            </div>
+        </div><br>
+        <div class="form-group">
+            <label>Fecha de estreno</label>
+            <input formControlName="fecha_estreno" class="form-control" placeholder="Nombre">
+            <div class="errors" *ngIf="fecha_estreno?.invalid && (fecha_estreno?.dirty || fecha_estreno?.touched)">
+                <span *ngIf="fecha_estreno?.errors?.['required']">
+                    <small>La fecha de estreno es requerida.</small>
+                </span>
+            </div>
+        </div><br>
+        <div class="form-group">
             <label>Duracion</label>
             <input formControlName="duracion" class="form-control" placeholder="Nombre">
             <div class="errors" *ngIf="duracion?.invalid && (duracion?.dirty || duracion?.touched)">
                 <span *ngIf="duracion?.errors?.['required']">
                     <small>La duración es requerida.</small>
+                </span>
+            </div>
+        </div><br>
+        <div class="form-group">
+            <label>Tipo</label><br>
+            <input type="radio" value="Pelicula" formControlName="tipo"> Pelicula <br>
+            <input type="radio" value="Serie" formControlName="tipo"> Serie
+            <div class="errors" *ngIf="tipo?.invalid && (tipo?.dirty || tipo?.touched)">
+                <span *ngIf="tipo?.errors?.['required']">
+                    <small>Debe seleccionar un tipo obligatoriamente.</small>
                 </span>
             </div>
         </div><br>

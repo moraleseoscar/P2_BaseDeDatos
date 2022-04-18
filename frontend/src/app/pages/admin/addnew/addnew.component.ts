@@ -16,6 +16,8 @@ export class AddnewComponent implements OnInit {
   public actor_form: FormGroup;
   public id: string = '';
   public title: string = 'Crear';
+  public directors: Array<any> = [];
+
 
   constructor(private route: ActivatedRoute, private general_service: GeneralService, private router: Router, private spinner: NgxSpinnerService) {
     this.actor_form = this.createFormGroup();
@@ -23,10 +25,9 @@ export class AddnewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.id) {
-      this.editFormGroup();
-      this.title = 'Editar'
-    }
+    this.spinner.show();
+    this.getDirectors();
+    
   }
 
   editFormGroup() {
@@ -34,10 +35,25 @@ export class AddnewComponent implements OnInit {
       this.actor_form.patchValue({ 
         nombre: res.data.nombre, 
         descripcion: res.data.descripcion,
+        id_director: res.data.id_director,
         duracion: res.data.duracion,
-        link_video: res.data.link_video 
+        link_video: res.data.link_video,
+        fecha_estreno: res.data.fecha_estreno,
+        tipo: res.data.tipo 
       });
     });
+  }
+
+  getDirectors(){
+    this.general_service.getAuth('director').then((res) => {
+      this.directors = res.data;
+      this.spinner.hide();
+    });
+    if (this.id) {
+      this.editFormGroup();
+      this.title = 'Editar'
+      
+    }
   }
 
   createFormGroup() {
@@ -45,12 +61,16 @@ export class AddnewComponent implements OnInit {
       nombre: new FormControl('', [Validators.required]),
       descripcion: new FormControl('', [Validators.required]),
       duracion: new FormControl('', [Validators.required]),
-      link_video: new FormControl('', [Validators.required])
+      link_video: new FormControl('', [Validators.required]),
+      id_director: new FormControl('', [Validators.required]),
+      fecha_estreno: new FormControl('', [Validators.required]),
+      tipo: new FormControl('', [Validators.required])
     });
   }
 
   submit() {
     this.spinner.show();
+    console.log(this.actor_form.value)
     if (this.id) {
       this.general_service
         .putAuth('film/' + this.id, this.actor_form.value)
@@ -118,6 +138,15 @@ export class AddnewComponent implements OnInit {
   }
   get link_video() {
     return this.actor_form.get('link_video');
+  }
+  get id_director() {
+    return this.actor_form.get('id_director');
+  }
+  get fecha_estreno() {
+    return this.actor_form.get('fecha_estreno');
+  }
+  get tipo() {
+    return this.actor_form.get('tipo');
   }
 }
 
