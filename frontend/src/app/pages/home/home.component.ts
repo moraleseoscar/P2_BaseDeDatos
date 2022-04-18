@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   public directores: Array < any > = [];
   public actores: Array < any > = [];
   public premios: Array < any > = [];
+  public anuncios: Array < any > = [];
   public search_form: FormGroup;
   public tipo: string = "all";
   public id: any = null;
@@ -39,6 +40,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMoviesSeries();
+    this.getAnuncios();
     this.getCategories();
     this.getActors();
     this.getAwards();
@@ -53,6 +55,11 @@ export class HomeComponent implements OnInit {
 
   searchText() {
     this.getMoviesSeries(this.tipo, this.id);
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
   getMoviesSeries(tipo: any = 'all', id: any = null) {
@@ -70,6 +77,13 @@ export class HomeComponent implements OnInit {
   getCategories() {
     this.general_service.getAuth('category').then(res => {
       this.categories = res.data;
+      this.spinner.hide();
+    });
+  }
+
+  getAnuncios() {
+    this.general_service.getAuth('anuncio').then(res => {
+      this.anuncios = res.data;
       this.spinner.hide();
     });
   }

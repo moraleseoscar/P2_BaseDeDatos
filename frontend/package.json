@@ -25,6 +25,7 @@
     "bootstrap-icons": "^1.8.1",
     "jquery": "^3.6.0",
     "ngx-spinner": "^13.1.1",
+    "ngx-youtube-player": "^12.0.1",
     "popper.js": "^1.16.1",
     "rxjs": "~7.5.0",
     "squery": "^0.3.2",

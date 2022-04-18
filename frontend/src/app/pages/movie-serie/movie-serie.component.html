@@ -12,30 +12,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+          <a class="nav-link" href="#">Favoritos</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-secondary" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </nav>
@@ -66,19 +48,19 @@
     </div>
     <div class="row" style="display: flex;justify-content: center;">
       <div class="col-md-6 mb-4" style="display: flex; justify-content: flex-end;">
-        <div style="padding-right: 15px;">
+        <div style="padding-right: 15px;" *ngIf="awards.length > 0">
           <h4 style="color: white;">Premios</h4>
           <ul style="color: white;">
             <li *ngFor="let p of awards">{{p.nombre}}</li>
           </ul>
         </div>
-        <div style="padding-right: 15px;">
+        <div style="padding-right: 15px;" *ngIf="actors.length > 0">
           <h4 style="color: white;">Actores</h4>
           <ul style="color: white;">
             <li *ngFor="let a of actors">{{a.nombre}}</li>
           </ul>
         </div>
-        <div style="padding-right: 15px;">
+        <div style="padding-right: 15px;" *ngIf="categories.length > 0">
           <h4 style="color: white;">Categorias</h4>
           <ul style="color: white;">
             <li *ngFor="let c of categories">{{c.nombre}}</li>
@@ -91,10 +73,9 @@
     <div class="container" style="padding: 0px;">
       <div class="peli row">
         <div class="col-md-12" *ngIf="movie_serie">
-          <iframe height="100%" width="100%" [src]="movie_serie?.link_video | safeUrl" title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+          <youtube-player [width]="1320" [height]="722" [videoId]="id" (ready)="savePlayer($event)"
+            (change)="onStateChange($event)" [playerVars]="playerVars">
+          </youtube-player>
         </div>
       </div>
     </div>

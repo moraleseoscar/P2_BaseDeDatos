@@ -97,4 +97,13 @@ class UserController extends Controller
         }
     }
 
+    public function list() {
+        try {
+            $users = User::all();
+            return response(['result' => 'success', 'data' => $users], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
+
 }

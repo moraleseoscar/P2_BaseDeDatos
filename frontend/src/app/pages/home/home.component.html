@@ -62,17 +62,15 @@
         <input formControlName="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-secondary" type="submit">Search</button>
       </form>
-      <a class="nav-link text-light" routerLink="/login">Logout <i class="bi bi-box-arrow-right"></i></a>
+      <a class="nav-link text-light" style="cursor: pointer;" (click)="logout()">Logout <i class="bi bi-box-arrow-right"></i></a>
     </div>
   </div>
 </nav>
 <div class="main">
-  <section class="jumbotron text-center">
-    <div class="container text-light">
-      <h1 class="display-3">Pelicula relevante</h1>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae quibusdam quod placeat officiis
-        optio cum? Neque adipisci, ratione vitae repudiandae eum esse. Repellat quis exercitationem commodi eos
-        voluptate molestias ut?</p>
+  <section *ngIf="anuncios.length > 0" class="jumbotron text-center" [ngStyle]="{'background-image': 'url(' + anuncios[0].background + ')'}">
+    <div class="container text-dark" style="font-weight: bold;">
+      <h1 class="display-3">{{anuncios[0].nombre}}</h1>
+      <p>{{anuncios[0].descripcion}}</p>
       <p><a class="btn btn-primary btn-lg" href="#" role="button">Ver detalles &raquo;</a></p>
     </div>
   </section>
