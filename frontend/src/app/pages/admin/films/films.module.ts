@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FilmsRoutingModule } from './films-routing.module';
 import { FilmsComponent } from './films.component';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { FilmsComponent } from './films.component';
   ],
   imports: [
     CommonModule,
-    FilmsRoutingModule
+    FilmsRoutingModule,
+    ComponentsModule
   ]
 })
 export class FilmsModule { }

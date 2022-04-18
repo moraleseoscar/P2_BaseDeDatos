@@ -6,6 +6,8 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Actor\ActorController;
 use App\Http\Controllers\Director\DirectorController;
+use App\Http\Controllers\MovieSerie\MovieSerieController;
+
 
 
 /*
@@ -22,6 +24,9 @@ Route::get('/user', [UserController::class, 'get'])->middleware('auth:api');
 Route::apiResource('/profile', ProfileController::class)->middleware('auth:api');
 
 Route::apiResource('/director', DirectorController::class)->middleware('auth:api');
+
+Route::apiResource('/film', MovieSerieController::class)->middleware('auth:api');
+
 
 Route::apiResource('/actor', ActorController::class)->middleware('auth:api');
 Route::get('/verify-type', 'App\Http\Controllers\User\UserController@verifyType')->middleware('auth:api');

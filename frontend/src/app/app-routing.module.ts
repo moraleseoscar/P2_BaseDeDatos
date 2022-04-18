@@ -41,6 +41,11 @@ const routes: Routes = [{
     loadChildren: () => import('./pages/admin/addnew/addnew.module').then(m => m.AddnewModule)
   },
   {
+    path: 'admin/addnew:id',
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./pages/admin/addnew/addnew.module').then(m => m.AddnewModule)
+  },
+  {
     path: 'home',
     canActivate: [ClientGuard],
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
@@ -75,10 +80,23 @@ const routes: Routes = [{
     canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/actor/actor.module').then(m => m.ActorModule)
   },
-    { path: 'admin/directors', loadChildren: () => import('./pages/admin/directors/directors.module').then(m => m.DirectorsModule) },
-    { path: 'admin/director', loadChildren: () => import('./pages/admin/director/director.module').then(m => m.DirectorModule) },
-    { path: 'admin/director/:id', loadChildren: () => import('./pages/admin/director/director.module').then(m => m.DirectorModule) },
-    { path: 'admin/films', loadChildren: () => import('./pages/admin/films/films.module').then(m => m.FilmsModule) }
+  { 
+    path: 'directors', 
+    loadChildren: () => import('./pages/admin/directors/directors.module').then(m => m.DirectorsModule) 
+  },
+  { 
+    path: 'director', 
+    loadChildren: () => import('./pages/admin/director/director.module').then(m => m.DirectorModule) 
+  },
+  { 
+    path: 'director/:id', 
+    loadChildren: () => import('./pages/admin/director/director.module').then(m => m.DirectorModule) 
+  },
+  { 
+    path: 'films',
+    loadChildren: () => import('./pages/admin/films/films.module').then(m => m.FilmsModule) 
+  }
+
   ];
 
 @NgModule({
