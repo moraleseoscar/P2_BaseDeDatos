@@ -22,10 +22,10 @@
                     <a class="nav-link" routerLink="/admin/actors">Actores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" routerLink="/admin/directors">Directores</a>
+                    <a class="nav-link" routerLink="/admin/directors">Directores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/admin/anuncios">Anuncios</a>
+                    <a class="nav-link active" routerLink="/admin/anuncios">Anuncios</a>
                 </li>
             </ul>
             <a class="nav-link text-light" routerLink="/login">Logout <i class="bi bi-box-arrow-right"></i></a>
@@ -34,10 +34,10 @@
 </nav>
 
 <div class="container mt-5">
-    <p class="h1">Tabla de directores</p>
+    <p class="h1">Tabla de anuncios</p>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <button (click)="create()" class="btn btn-primary btn-sm"><i class="bi bi-plus-square"></i> Ingresar nuevo director</button>
+            <button type="button" (click)="create()"  class="btn btn-primary btn-sm"><i class="bi bi-file-plus-fill"></i> Ingresar nuevo anuncio</button>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -47,6 +47,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
+                            <th>Descripcion</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -54,6 +55,7 @@
                         <tr *ngFor="let actor of actors">
                             <td>{{actor.id}}</td>
                             <td>{{actor.nombre}}</td>
+                            <td>{{actor.descripcion}}</td>
                             <td>
                                 <button (click)="edit(actor.id)" class="btn btn-warning">
                                     <i class="bi bi-pencil-fill"></i>

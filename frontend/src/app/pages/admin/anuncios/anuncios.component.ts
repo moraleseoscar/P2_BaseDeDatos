@@ -4,11 +4,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-anuncios',
+  templateUrl: './anuncios.component.html',
+  styleUrls: ['./anuncios.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class AnunciosComponent implements OnInit {
 
   public actors: Array<any> = [];
 
@@ -20,14 +20,17 @@ export class UsersComponent implements OnInit {
   }
 
   getActors() {
-    this.general_service.getAuth('user').then((res) => {
+    this.general_service.getAuth('anuncio').then((res) => {
       this.actors = res.data;
       this.spinner.hide();
     });
   }
 
   edit(id: string) {
-    this.router.navigate(['admin/user/' + id]);
+    this.router.navigate(['admin/anuncio/' + id]);
   }
 
+  create(){
+    this.router.navigate(['admin/anuncio']);
+  }
 }
