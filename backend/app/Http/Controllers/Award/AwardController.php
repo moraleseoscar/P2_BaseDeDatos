@@ -50,6 +50,15 @@ class AwardController extends Controller
         }
     }
 
+    public function getSomeAwards() {
+        try {
+            $actors = Award::paginate(10);
+            return response(["result" => 'success', 'data' => $actors], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
+
     public function update(Request $request, Award $award) {
         try {
             $award->update($request->all());

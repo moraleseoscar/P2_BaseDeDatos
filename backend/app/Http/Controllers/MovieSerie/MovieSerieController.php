@@ -18,6 +18,42 @@ class MovieSerieController extends Controller
         }
     }
 
+    public function filterMovies($search, $tipo, $id) {
+        try {
+            $query = null;
+            if($tipo == 'categoria') {
+                $query = "SELECT * FROM peliculas_series INNER JOIN categoria_pelicula ON categoria_pelicula.id_pelicula = peliculas_series.id WHERE categoria_pelicula.id_categoria = $id";
+                if($search != '-') {
+                    $query = $query . " AND peliculas_series.nombre ILIKE '%$search%'";
+                }
+            } else if($tipo == 'actor') {
+                $query = "SELECT * FROM peliculas_series INNER JOIN actores_peliculas ON actores_peliculas.id_pelicula = peliculas_series.id WHERE actores_peliculas.id_actores = $id";
+                if($search != '-') {
+                    $query = $query . " AND peliculas_series.nombre ILIKE '%$search%'";
+                }
+            } else if($tipo == 'director') {
+                $query = "SELECT * FROM peliculas_series WHERE id_director = $id";
+                if($search != '-') {
+                    $query = $query . " AND peliculas_series.nombre ILIKE '%$search%'";
+                }
+            } else if($tipo == 'premio') {
+                $query = "SELECT * FROM peliculas_series INNER JOIN premios ON premios.id_pelicula = peliculas_series.id WHERE premios.id = $id";
+                if($search != '-') {
+                    $query = $query . " AND peliculas_series.nombre ILIKE '%$search%'";
+                }
+            } else {
+                $query = "SELECT * FROM peliculas_series";
+                if($search != '-') {
+                    $query = $query . " WHERE peliculas_series.nombre ILIKE '%$search%'";
+                }
+            }
+            $movieSeries = \DB::select($query);
+            return response(["result" => 'success', 'data' => $movieSeries], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
+
     public function store(Request $request) {
         try {
             $data = $request->all();
@@ -47,7 +83,7 @@ class MovieSerieController extends Controller
         }
     }
 
-    public function show($id) {
+    public function showDetails($id) {
         try {
             $movieSerie = \DB::select("SELECT ps.id,ps.nombre, ps.tipo, ps.fecha_estreno, ps.descripcion,ps.duracion,ps.link_video,ps.portada, d.nombre AS director
                                         FROM peliculas_series ps

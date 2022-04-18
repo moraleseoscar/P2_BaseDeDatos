@@ -49,6 +49,15 @@ class DirectorController extends Controller
         }
     }
 
+    public function getSomeDirectors() {
+        try {
+            $actors = Director::paginate(10);
+            return response(["result" => 'success', 'data' => $actors], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
+
     public function update(Request $request, Director $category) {
         try {
             $category->update($request->all());

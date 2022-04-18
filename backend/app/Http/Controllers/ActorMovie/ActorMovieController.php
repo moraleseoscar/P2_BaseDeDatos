@@ -32,9 +32,6 @@ class ActorMovieController extends Controller
             if ($actor_movie_validator->fails()) {
                 return response(['result' => 'fail', 'message' => $actor_movie_validator->errors()], 500);
             }
-
-            /* $data['id_usuario'] = auth()->user()->id;
-            $data['activo'] = true; */
             
             ActorMovie::create($data);
             

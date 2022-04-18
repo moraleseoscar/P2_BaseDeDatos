@@ -35,7 +35,7 @@ export class MovieSerieComponent implements OnInit {
   }
 
   getMovieSerie() {
-    this.general_service.getAuth('movie-serie/' + this.route.snapshot.params['id']).then(res => {
+    this.general_service.getAuth('show-movie-serie-detail/' + this.route.snapshot.params['id']).then(res => {
       this.movie_serie = res.data.movie;
       this.awards = res.data.awards;
       this.actors = res.data.actors;

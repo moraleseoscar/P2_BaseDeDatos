@@ -19,6 +19,15 @@ class ActorController extends Controller
         }
     }
 
+    public function getSomeActors() {
+        try {
+            $actors = Actor::paginate(10);
+            return response(["result" => 'success', 'data' => $actors], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
+
     public function store(Request $request) {
         try {
             $data = $request->all();

@@ -1,90 +1,107 @@
 <app-loading></app-loading>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand">
-            <img src="../../../assets/logo_color.png" alt="" width="30" height="24"
-                class="d-inline-block align-text-top">
-            Espotifai
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/favs">Favoritos</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Categorías
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Acción</a></li>
-                        <li><a class="dropdown-item" href="#">Ciencia Ficción</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-secondary" type="submit">Search</button>
-            </form>
-            <a class="nav-link text-light" routerLink="/login">Logout <i class="bi bi-box-arrow-right"></i></a>
-        </div>
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <img src="../../../assets/logo_color.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+      Espotifai
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/favs">Favoritos</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Categorías
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let c of categories"><a (click)="getMoviesSeries('categoria', c.id)"
+                class="dropdown-item">{{c.nombre}}</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Actores
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let c of actores"><a (click)="getMoviesSeries('actor', c.id)"
+                class="dropdown-item">{{c.nombre}}</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Directores
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let c of directores"><a (click)="getMoviesSeries('director', c.id)"
+                class="dropdown-item">{{c.nombre}}</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Premios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let c of premios"><a (click)="getMoviesSeries('premio', c.id)"
+                class="dropdown-item">{{c.nombre}}</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" (ngSubmit)="searchText()" [formGroup]="search_form">
+        <input formControlName="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-secondary" type="submit">Search</button>
+      </form>
+      <a class="nav-link text-light" routerLink="/login">Logout <i class="bi bi-box-arrow-right"></i></a>
     </div>
+  </div>
 </nav>
 <div class="main">
-    <section class="jumbotron text-center">
-        <div class="container text-light">
-            <h1 class="display-3">Pelicula relevante</h1>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae quibusdam quod placeat officiis
-                optio cum? Neque adipisci, ratione vitae repudiandae eum esse. Repellat quis exercitationem commodi eos
-                voluptate molestias ut?</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Ver detalles &raquo;</a></p>
-        </div>
-    </section>
-    <div class="album bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="starter-template pb-3">
-                    <h1>Otras peliculas</h1>
-                </div>
-            </div>
-            <div class="peli row">
-                <div class="col-md-12">
-                    <iframe height="100%" width="100%" src="https://www.youtube.com/embed/KktJrZGDvnw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-4" *ngFor="let movie_serie of movies_series">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" style="width: 400px; height: 600px;" [src]="movie_serie.portada" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">{{movie_serie.descripcion | slice:0:197}}...</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button (click)="show(movie_serie.id)" type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                                </div>
-                                <small class="text-muted">{{movie_serie.duracion}}</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <section class="jumbotron text-center">
+    <div class="container text-light">
+      <h1 class="display-3">Pelicula relevante</h1>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae quibusdam quod placeat officiis
+        optio cum? Neque adipisci, ratione vitae repudiandae eum esse. Repellat quis exercitationem commodi eos
+        voluptate molestias ut?</p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">Ver detalles &raquo;</a></p>
     </div>
+  </section>
+  <div class="album bg-light">
+    <div class="container">
+      <div class="row mt-4">
+        <div class="col-md-4" *ngFor="let movie_serie of movies_series">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" style="width: 400px; height: 600px;" [src]="movie_serie.portada"
+              alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">{{movie_serie.descripcion | slice:0:197}}...</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button (click)="show(movie_serie.id)" type="button"
+                    class="btn btn-sm btn-outline-secondary">Ver</button>
+                </div>
+                <small class="text-muted">{{movie_serie.duracion}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <footer class="text-muted">
-    <div class="container">
-        <p>Espotifai &copy; Una plataforma en donde puedes disfrutar todo tu entretenimiento</p>
-        <p>New to Bootstrap? <a href="">Visita nuestras redes</a> or read our <a href="">Algun link</a>.</p>
-    </div>
+  <div class="container">
+    <p>Espotifai &copy; Una plataforma en donde puedes disfrutar todo tu entretenimiento</p>
+    <p>New to Bootstrap? <a href="">Visita nuestras redes</a> or read our <a href="">Algun link</a>.</p>
+  </div>
 </footer>
