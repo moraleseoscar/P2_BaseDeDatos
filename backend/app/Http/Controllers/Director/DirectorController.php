@@ -35,33 +35,35 @@ class DirectorController extends Controller
             
             Director::create($data);
             
-            return ['result' => 'success', "message"=> 'Categoria almacenada exitósamente.'];
+            return ['result' => 'success', "message"=> 'Director almacenado exitósamente.'];
         } catch (\Exception $e) {
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }
     }
 
-    public function show(Director $category) {
+    public function show($id) {
         try {
-            return response(["result" => 'success', "data" => $category], 200);
+            $director = Director::where('id', $id)->first();
+            return response(["result" => 'success', "data" => $director], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    } 
+
+
+    public function update(Request $request, Director $director) {
+        try {
+            $director->update($request->all());
+            return response(["result" => "success", "message" => 'Director actualizado exitósamente.'], 200);
         } catch (\Exception $e) {
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }
     }
 
-    public function update(Request $request, Director $category) {
+    public function destroy(Director $director) {
         try {
-            $category->update($request->all());
-            return response(["result" => "success", "message" => 'Categoria actualizada exitósamente.'], 200);
-        } catch (\Exception $e) {
-            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
-        }
-    }
-
-    public function destroy(Director $category) {
-        try {
-            $category->delete();
-            return response(['result' => 'fail', 'message' => 'Categoria eliminada exitósamente.'], 500);
+            $director->delete();
+            return response(['result' => 'fail', 'message' => 'Director eliminado exitósamente.'], 500);
         } catch (\Exception $e) {
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }

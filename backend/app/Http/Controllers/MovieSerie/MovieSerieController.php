@@ -47,8 +47,9 @@ class MovieSerieController extends Controller
         }
     }
 
-    public function show(MovieSerie $movieSerie) {
+    public function show($id) {
         try {
+            $movieSerie = MovieSerie::where('id', $id)->first();
             return response(["result" => 'success', "data" => $movieSerie], 200);
         } catch (\Exception $e) {
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
@@ -57,12 +58,13 @@ class MovieSerieController extends Controller
 
     public function update(Request $request, MovieSerie $movieSerie) {
         try {
-            $movieSerie->update($request->all());
-            return response(["result" => "success", "message" => 'Movie_serie actualizada exitósamente.'], 200);
+            $movieSerie-> update($request->all());
+            return response(["result" => $movieSerie, "message" => 'Actor actualizado exitósamente.'], 200);
         } catch (\Exception $e) {
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }
     }
+
 
     public function destroy(MovieSerie $movieSerie) {
         try {
