@@ -104,7 +104,22 @@ const routes: Routes = [{
     path: 'admin/films',
     canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/films/films.module').then(m => m.FilmsModule) 
-  }
+  },
+  { 
+    path: 'admin/anuncios', 
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./pages/admin/anuncios/anuncios.module').then(m => m.AnunciosModule) 
+  },
+  { 
+    path: 'admin/anuncio', 
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./pages/admin/anuncio/anuncio.module').then(m => m.AnuncioModule) 
+  },
+  { 
+    path: 'admin/anuncio/:id', 
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./pages/admin/anuncio/anuncio.module').then(m => m.AnuncioModule) 
+  },
 
   ];
 

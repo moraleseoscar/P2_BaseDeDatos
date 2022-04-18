@@ -22,10 +22,10 @@
                     <a class="nav-link" routerLink="/admin/actors">Actores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" routerLink="/admin/directors">Directores</a>
+                    <a class="nav-link" routerLink="/admin/directors">Directores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/admin/anuncios">Anuncios</a>
+                    <a class="nav-link active" routerLink="/admin/anuncios">Anuncios</a>
                 </li>
             </ul>
             <a class="nav-link text-light" routerLink="/login">Logout <i class="bi bi-box-arrow-right"></i></a>
@@ -34,11 +34,38 @@
 </nav>
 
 <div class="container mt-5">
-    <p class="h1">{{title}} nuevo director</p>
+    <p class="h1">{{title}} nuevo comercial</p>
     <form (ngSubmit)="submit()" [formGroup]="actor_form">
-        <div class="form-group" >
-            <label>Nombre</label>
-            <input type="text" formControlName="nombre" class="form-control" aria-describedby="emailHelp" placeholder="Nombre">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Titulo</label>
+            <input formControlName="nombre" class="form-control" placeholder="Nombre">
+            <div class="errors" *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)">
+                <span *ngIf="nombre?.errors?.['required']">
+                    <small>El nombre es requerido.</small>
+                </span>
+            </div>
+        </div><br>
+        <div class="form-group">
+            <label>Descripcion</label>
+            <textarea formControlName="descripcion" class="form-control" rows="3"></textarea>
+            <div class="errors" *ngIf="descripcion?.invalid && (descripcion?.dirty || descripcion?.touched)">
+                <span *ngIf="descripcion?.errors?.['required']">
+                    <small>La descripcion es requerida.</small>
+                </span>
+            </div>
+        </div><br>
+        <div class="form-group">
+            <label>Link Imagen</label>
+            <input formControlName="imagen" class="form-control" placeholder="Image link">
+            <div class="errors" *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)">
+                <span *ngIf="nombre?.errors?.['required']">
+                    <small>El nombre es requerido.</small>
+                </span>
+            </div>
+        </div><br>
+        <div class="form-group">
+            <label>Link Background</label>
+            <input formControlName="background" class="form-control" placeholder="Background link">
             <div class="errors" *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)">
                 <span *ngIf="nombre?.errors?.['required']">
                     <small>El nombre es requerido.</small>

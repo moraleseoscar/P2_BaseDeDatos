@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Director;
+namespace App\Http\Controllers\Anuncio;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Director;
+use App\Models\Anuncio;
 use Illuminate\Support\Facades\Validator;
 
-class DirectorController extends Controller
+class AnuncioController extends Controller
 {
     public function index() {
         try {
-            $categorias = Director::all();
+            $categorias = Anuncio::all();
             return response(["result" => 'success', 'data' => $categorias], 200);
         } catch (\Exception $e) {
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
@@ -23,7 +23,11 @@ class DirectorController extends Controller
             $data = $request->all();
             
             $categories_validator = Validator::make($data, [
-                'nombre' => 'required|max:255'
+                'nombre' => 'required|max:255',
+                'imagen' => 'required',
+                'background' => 'required',
+                'nombre' => 'required',
+                'descripcion' => 'required'
             ]);
             
             if ($categories_validator->fails()) {
@@ -33,9 +37,9 @@ class DirectorController extends Controller
             /* $data['id_usuario'] = auth()->user()->id;
             $data['activo'] = true; */
             
-            Director::create($data);
+            Anuncio::create($data);
             
-            return ['result' => 'success', "message"=> 'Director almacenado exitósamente.'];
+            return ['result' => 'success', "message"=> 'Anuncio almacenado exitósamente.'];
         } catch (\Exception $e) {
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }
@@ -43,36 +47,27 @@ class DirectorController extends Controller
 
     public function show($id) {
         try {
-            $director = Director::where('id', $id)->first();
-            return response(["result" => 'success', "data" => $director], 200);
+            $anuncio = Anuncio::where('id', $id)->first();
+            return response(["result" => 'success', "data" => $anuncio], 200);
         } catch (\Exception $e) {
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }
     } 
 
 
-    public function update(Request $request, Director $director) {
+    public function update(Request $request, Anuncio $anuncio) {
         try {
-            $director->update($request->all());
-            return response(["result" => "success", "message" => 'Director actualizado exitósamente.'], 200);
+            $anuncio->update($request->all());
+            return response(["result" => "success", "message" => 'Anuncio actualizado exitósamente.'], 200);
         } catch (\Exception $e) {
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }
     }
 
-    public function getSomeDirectors() {
+    public function destroy(Anuncio $anuncio) {
         try {
-            $actors = Director::paginate(10);
-            return response(["result" => 'success', 'data' => $actors], 200);
-        } catch (\Exception $e) {
-            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
-        }
-    }
-
-    public function destroy(Director $director) {
-        try {
-            $director->delete();
-            return response(['result' => 'fail', 'message' => 'Director eliminado exitósamente.'], 500);
+            $anuncio->delete();
+            return response(['result' => 'fail', 'message' => 'Anuncio eliminado exitósamente.'], 500);
         } catch (\Exception $e) {
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }
