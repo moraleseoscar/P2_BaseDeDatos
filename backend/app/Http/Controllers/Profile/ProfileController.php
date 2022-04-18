@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Profile;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
@@ -18,13 +19,23 @@ class ProfileController extends Controller
         }
     }
 
+    public function getUserProfiles() {
+        try {
+            $profiles = Profile::where('id_usuario', auth()->user()->id)->get();
+            $subscription = Subscription::where('id_usuario', auth()->user()->id)->first();
+            return response(["result" => 'success', 'profiles' => $profiles, 'subscription' => $subscription], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
+
     public function store(Request $request) {
         try {
             $data = $request->all();
             
             $profile_validated = Validator::make($data, [
                 'nombre' => 'required|max:255',
-                'icon' => 'required|max:10'
+                'icon' => 'required|max:20'
             ]);
             
             if ($profile_validated->fails()) {

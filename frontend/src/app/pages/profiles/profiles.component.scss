@@ -51,7 +51,7 @@ img{
     border-style: none;   
 }
 
-.button input{
+.button button{
     height: 100%;
     width: 200px;
     border-radius: 5px;
@@ -64,7 +64,7 @@ img{
     transition: all 0.3s ease;
     background: linear-gradient(135deg, #feff00, #c0003a);
 }
-.button input:hover{
+.button button:hover{
     background: linear-gradient(-135deg, #feff00, #c0003a);
 }
 

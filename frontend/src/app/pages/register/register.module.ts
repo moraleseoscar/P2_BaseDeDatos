@@ -4,21 +4,19 @@ import { CommonModule } from '@angular/common';
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxSpinnerModule } from "ngx-spinner";
-import { LoadingComponent } from 'src/app/components/loading/loading.component';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 @NgModule({
   declarations: [
-    RegisterComponent,
-    LoadingComponent
+    RegisterComponent
   ],
   imports: [
     CommonModule,
     RegisterRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxSpinnerModule
+    ComponentsModule
   ]
 })
 export class RegisterModule { }

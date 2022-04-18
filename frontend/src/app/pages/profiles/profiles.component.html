@@ -1,31 +1,29 @@
+<app-loading></app-loading>
 <div class="top bg-dark">
 	<div class="container">
 		<div class="row">
-            <div class="col-8">
-                <div class="title">Selecciona tu usuario</div>
-            </div>
-            <div class="col-4" style="text-align: right">
-                <button type="button" class="btn btn-link text-white" routerLink="/login"> ⇦ Volver</button>
-            </div>
-        </div>
+			<div class="col-8">
+				<div class="title">Selecciona tu usuario</div>
+			</div>
+			<div class="col-4" style="text-align: right">
+				<button type="button" class="btn btn-link text-white"> ⇦ Volver</button>
+			</div>
+		</div>
 		<div class="content">
 			<div class="row">
-				<div class="profile col-sm">
-					<a routerLink="/home"><img src="../../../assets/user.png"></a>
-					<p>Usuario 1</p>
+				<div class="profile col-sm" *ngFor="let profile of profiles">
+					<div style="display: flex; flex-direction: column; align-items: center;">
+						<img (click)="editProfile(profile.id)" src="../../../assets/edit.jpg"
+							style="width: 25px; height: 25px;" alt="">
+						<div (click)="selectProfile(profile.id)"><img src="../../../assets/{{profile.icon}}">
+							<p>{{profile.nombre}}</p>
+						</div>
+					</div>
 				</div>
-				<div class="profile col-sm">
-					<a routerLink="/home"><img src="../../../assets/user.png"></a>
-					<p>Usuario 2</p>
-				</div>
-				<div class="profile col-sm">
-					<a routerLink="/home"><img src="../../../assets/user.png"></a>
-					<p>Usuario 3</p>
-				</div>
-			</div>
-			<div class="manage">
-				<div class="d-flex justify-content-center button">
-					<input type="submit" value="Manejo de perfiles">
+				<div class="profile col-sm"
+					*ngIf="(subscription.tipo == 'gratis' && profiles.length == 0) || (subscription.tipo == '4' && profiles.length < 4) || (subscription.tipo == '8' && profiles.length < 8)">
+					<a routerLink="/edit-create-profile"><img src="../../../assets/add.png"></a>
+					<p>Agregar Perfil</p>
 				</div>
 			</div>
 		</div>
