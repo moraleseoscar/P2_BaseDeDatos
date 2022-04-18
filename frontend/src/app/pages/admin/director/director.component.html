@@ -19,10 +19,10 @@
                     <a class="nav-link" routerLink="/admin/films">Peliculas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" routerLink="/admin/actors">Actores</a>
+                    <a class="nav-link" routerLink="/admin/actors">Actores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/admin/directors">Directores</a>
+                    <a class="nav-link active" routerLink="/admin/directors">Directores</a>
                 </li>
             </ul>
             <a class="nav-link text-light" routerLink="/login">Logout <i class="bi bi-box-arrow-right"></i></a>
@@ -31,7 +31,7 @@
 </nav>
 
 <div class="container mt-5">
-    <p class="h1">{{title}} nuevo actor/actriz</p>
+    <p class="h1">{{title}} nuevo director</p>
     <form (ngSubmit)="submit()" [formGroup]="actor_form">
         <div class="form-group" >
             <label>Nombre</label>

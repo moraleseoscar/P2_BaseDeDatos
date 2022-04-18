@@ -5,13 +5,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { GeneralService } from 'src/app/services/general.service';
 import Swal from 'sweetalert2';
 
-
 @Component({
-  selector: 'app-addnew',
-  templateUrl: './addnew.component.html',
-  styleUrls: ['./addnew.component.scss']
+  selector: 'app-director',
+  templateUrl: './director.component.html',
+  styleUrls: ['./director.component.scss']
 })
-export class AddnewComponent implements OnInit {
+export class DirectorComponent implements OnInit {
 
   public actor_form: FormGroup;
   public id: string = '';
@@ -30,22 +29,14 @@ export class AddnewComponent implements OnInit {
   }
 
   editFormGroup() {
-    this.general_service.getAuth('film/' + this.id).then((res) => {
-      this.actor_form.patchValue({ 
-        nombre: res.data.nombre, 
-        descripcion: res.data.descripcion,
-        duracion: res.data.duracion,
-        link_video: res.data.link_video 
-      });
+    this.general_service.getAuth('director/' + this.id).then((res) => {
+      this.actor_form.patchValue({ nombre: res.data.nombre });
     });
   }
 
   createFormGroup() {
     return new FormGroup({
-      nombre: new FormControl('', [Validators.required]),
-      descripcion: new FormControl('', [Validators.required]),
-      duracion: new FormControl('', [Validators.required]),
-      link_video: new FormControl('', [Validators.required])
+      nombre: new FormControl('', [Validators.required])
     });
   }
 
@@ -53,7 +44,7 @@ export class AddnewComponent implements OnInit {
     this.spinner.show();
     if (this.id) {
       this.general_service
-        .putAuth('film/' + this.id, this.actor_form.value)
+        .putAuth('director/' + this.id, this.actor_form.value)
         .then((res) => {
           this.spinner.hide();
           Swal.fire({
@@ -62,7 +53,7 @@ export class AddnewComponent implements OnInit {
             confirmButtonText: 'Aceptar',
           }).then((result) => {
             if (result.isConfirmed) {
-              this.router.navigate(['/admin/films']);
+              this.router.navigate(['/admin/directors']);
             }
           });
         })
@@ -79,7 +70,7 @@ export class AddnewComponent implements OnInit {
         });
     } else {
       this.general_service
-        .postAuth('film', this.actor_form.value)
+        .postAuth('director', this.actor_form.value)
         .then((res) => {
           this.spinner.hide();
           Swal.fire({
@@ -88,7 +79,7 @@ export class AddnewComponent implements OnInit {
             confirmButtonText: 'Aceptar',
           }).then((result) => {
             if (result.isConfirmed) {
-              this.router.navigate(['/admin/films']);
+              this.router.navigate(['/admin/directors']);
             }
           });
         })
@@ -110,14 +101,5 @@ export class AddnewComponent implements OnInit {
     return this.actor_form.get('nombre');
   }
 
-  get duracion() {
-    return this.actor_form.get('duracion');
-  }
-  get descripcion() {
-    return this.actor_form.get('descripcion');
-  }
-  get link_video() {
-    return this.actor_form.get('link_video');
-  }
 }
 

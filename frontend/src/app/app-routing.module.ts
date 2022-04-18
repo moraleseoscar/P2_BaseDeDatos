@@ -36,7 +36,12 @@ const routes: Routes = [{
     loadChildren: () => import('./pages/admin/users/users.module').then(m => m.UsersModule)
   },
   {
-    path: 'admin/addnew',
+    path: 'admin/film',
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./pages/admin/addnew/addnew.module').then(m => m.AddnewModule)
+  },
+  {
+    path: 'admin/film/:id',
     canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/addnew/addnew.module').then(m => m.AddnewModule)
   },
@@ -44,6 +49,11 @@ const routes: Routes = [{
     path: 'home',
     canActivate: [ClientGuard],
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'favs',
+    canActivate: [ClientGuard],
+    loadChildren: () => import('./pages/favs/favs.module').then(m => m.FavsModule)
   },
   {
     path: 'edit-create-profile',
@@ -74,8 +84,29 @@ const routes: Routes = [{
     path: 'movie-serie/:id',
     canActivate: [ClientGuard],
     loadChildren: () => import('./pages/movie-serie/movie-serie.module').then(m => m.MovieSerieModule)
+  },
+  { 
+    path: 'admin/directors', 
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./pages/admin/directors/directors.module').then(m => m.DirectorsModule) 
+  },
+  { 
+    path: 'admin/director', 
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./pages/admin/director/director.module').then(m => m.DirectorModule) 
+  },
+  { 
+    path: 'admin/director/:id', 
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./pages/admin/director/director.module').then(m => m.DirectorModule) 
+  },
+  { 
+    path: 'admin/films',
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./pages/admin/films/films.module').then(m => m.FilmsModule) 
   }
-];
+
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

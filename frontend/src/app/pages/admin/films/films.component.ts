@@ -4,11 +4,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
-  selector: 'app-actors',
-  templateUrl: './actors.component.html',
-  styleUrls: ['./actors.component.scss']
+  selector: 'app-films',
+  templateUrl: './films.component.html',
+  styleUrls: ['./films.component.scss']
 })
-export class ActorsComponent implements OnInit {
+export class FilmsComponent implements OnInit {
 
   public actors: Array<any> = [];
 
@@ -20,18 +20,19 @@ export class ActorsComponent implements OnInit {
   }
 
   getActors() {
-    this.general_service.getAuth('actor').then((res) => {
+    this.general_service.getAuth('film').then((res) => {
       this.actors = res.data;
       this.spinner.hide();
     });
   }
 
   edit(id: string) {
-    this.router.navigate(['admin/actor/' + id]);
+    this.router.navigate(['admin/film/' + id]);
   }
 
   create(){
-    this.router.navigate(['admin/actor']);
+    this.router.navigate(['admin/film']);
   }
 
 }
+

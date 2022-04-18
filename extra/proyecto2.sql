@@ -66,6 +66,7 @@ CREATE TABLE contenido(
 	id_pelicula	BIGINT,
 	id_perfil	BIGINT,
 	tiempo		INT,
+	ultima_vez_visto TIMESTAMP,
 	FOREIGN KEY (id_pelicula) REFERENCES peliculas_series(id) ON DELETE CASCADE,
 	FOREIGN KEY (id_perfil) REFERENCES users(id) ON DELETE CASCADE
 );
