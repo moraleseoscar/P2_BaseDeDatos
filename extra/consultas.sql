@@ -56,7 +56,7 @@ ORDER BY visto DESC;
 /*
 4. La cantidad de cuentas avanzadas se han creado en los últimos 6 meses.
 */
-SELECT * FROM users usrs
+SELECT COUNT(*) FROM users usrs
 INNER JOIN suscripciones sus ON sus.id_usuario= usrs.id
 WHERE created_at>=(CURRENT_DATE-180) AND sus.tipo = '8';
 
