@@ -15,9 +15,10 @@
           <a class="nav-link active" aria-current="page" href="/home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Favoritos</a>
+          <a class="nav-link" href="/favs">Favoritos</a>
         </li>
       </ul>
+      <a class="nav-link text-light" routerLink="/login">Logout <i class="bi bi-box-arrow-right"></i></a>
     </div>
   </div>
 </nav>
@@ -40,6 +41,14 @@
             </div>
             <div>
               <p>Director: <span>{{movie_serie?.director}}</span></p>
+            </div>
+          </div>
+          <div class="pt-5">
+            <div class="form-check">
+              <input (click)="addFav()"  class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Agregar a favoritos
+              </label>
             </div>
           </div>
 
@@ -70,7 +79,7 @@
     </div>
   </section>
   <div class="album bg-light" style="background: #D5D5D5!important;">
-    <div class="container" style="padding: 0px;">
+    <div class="container pt-5" style="padding: 0px;">
       <div class="peli row">
         <div class="col-md-12" *ngIf="movie_serie">
           <youtube-player [width]="1320" [height]="722" [videoId]="id" (ready)="savePlayer($event)"

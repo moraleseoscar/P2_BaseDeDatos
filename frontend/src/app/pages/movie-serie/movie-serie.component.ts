@@ -14,6 +14,7 @@ import {
   GeneralService
 } from 'src/app/services/general.service';
 import Swal from 'sweetalert2';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-movie-serie',
@@ -37,8 +38,13 @@ export class MovieSerieComponent implements OnInit {
   private player: any;
   public ytEvent: any;
   public veces: number = 0;
+  public actor_form: FormGroup;
+  public id_movie = '';
 
-  constructor(private route: ActivatedRoute, private general_service: GeneralService, private router: Router, private spinner: NgxSpinnerService) {}
+  constructor(private route: ActivatedRoute, private general_service: GeneralService, private router: Router, private spinner: NgxSpinnerService) {
+    this.actor_form = this.createFormGroup();
+    this.id_movie = this.route.snapshot.params['id'];
+  }
 
   ngOnInit(): void {
     this.spinner.show();
@@ -58,6 +64,13 @@ export class MovieSerieComponent implements OnInit {
       this.suscripcion = res.data.subscription;
       this.playerVars.start = res.data.content.tiempo;
       this.spinner.hide();
+    });
+  }
+
+  createFormGroup() {
+    return new FormGroup({
+      id_pelicula: new FormControl(),
+      id_perfil:new FormControl()
     });
   }
 
@@ -103,6 +116,33 @@ export class MovieSerieComponent implements OnInit {
     }
   }
 
+  addFav(){
+    this.actor_form.patchValue({ 
+      id_pelicula: this.id_movie,
+      id_perfil:  window.localStorage.getItem('profile')
+    });
+    this.general_service
+      .postAuth('fav', this.actor_form.value)
+      .then((res) => {
+        this.spinner.hide();
+        Swal.fire({
+          icon: 'success',
+          title: res.message,
+          timer: 100,
+          confirmButtonText: 'Aceptar',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log("Agregado a favoritos")
+          }
+        });
+      })
+      .catch((err) => {
+        this.spinner.hide();
+        console.log(err);
+      });
+  
+  }
+  
   savePlayer(player: any) {
     this.player = player;
   }
