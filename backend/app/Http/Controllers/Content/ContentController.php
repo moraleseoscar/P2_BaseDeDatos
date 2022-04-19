@@ -47,6 +47,15 @@ class ContentController extends Controller
         }
     }
 
+    public function listProfile($perfil) {
+        try {
+            $movieSeries = \DB::select("SELECT * FROM peliculas_series ps INNER JOIN contenido c ON c.id_pelicula = ps.id WHERE c.id_perfil = $perfil");
+            return response(["result" => 'success', "data" => $movieSeries], 200);
+        }catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
+
     public function show(Content $actor) {
         try {
             return response(["result" => 'success', "data" => $actor], 200);
