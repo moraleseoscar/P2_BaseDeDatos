@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MovieSerie;
 use App\Models\Subscription;
+use App\Models\Content;
 use Illuminate\Support\Facades\Validator;
 
 class MovieSerieController extends Controller
@@ -84,9 +85,10 @@ class MovieSerieController extends Controller
         }
     }
 
-    public function showDetails($id) {
+    public function showDetails($id, $profile) {
         try {
             $subscription = Subscription::where('id_usuario', auth()->user()->id)->first();
+            $content = Content::where('id_pelicula', $id)->where('id_perfil', $profile)->first();
             $movieSerie = \DB::select("SELECT ps.id,ps.nombre, ps.tipo, ps.fecha_estreno, ps.descripcion,ps.duracion,ps.link_video,ps.portada, d.nombre AS director
                                         FROM peliculas_series ps
                                         INNER JOIN director d ON d.id = ps.id_director 
@@ -104,7 +106,7 @@ class MovieSerieController extends Controller
             WHERE categoria_pelicula.id_categoria =  ANY(ARRAY[$categorias_id]) AND peliculas_series.id != $id LIMIT 5";
 
             $related = \DB::select($query);
-            return response(["result" => 'success', "data" => ["related" => $related, "movie" => $movieSerie[0], "actors" => $actores, 'awards' => $premios, 'categories' => $categorias, 'subscription' => $subscription]], 200);
+            return response(["result" => 'success', "data" => ["related" => $related, "movie" => $movieSerie[0], "actors" => $actores, 'awards' => $premios, 'categories' => $categorias, 'subscription' => $subscription, 'content' => $content]], 200);
         } catch (\Exception $e) {
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }

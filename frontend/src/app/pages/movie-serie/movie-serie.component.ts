@@ -1,5 +1,6 @@
 import {
   Component,
+  OnDestroy,
   OnInit
 } from '@angular/core';
 import {
@@ -31,7 +32,8 @@ export class MovieSerieComponent implements OnInit {
   public anuncios: Array < any > = [];
   public id = '';
   public playerVars = {
-    cc_lang_pref: 'en',
+    cc_lang_pref: 'es',
+    start: 0
   };
   private player: any;
   public ytEvent: any;
@@ -51,7 +53,7 @@ export class MovieSerieComponent implements OnInit {
   }
 
   getMovieSerie() {
-    this.general_service.getAuth('show-movie-serie-detail/' + this.route.snapshot.params['id']).then(res => {
+    this.general_service.getAuth('show-movie-serie-detail/' + this.route.snapshot.params['id'] + '/' + localStorage.getItem('profile')).then(res => {
       this.movie_serie = res.data.movie;
       const ids: Array < string > = this.movie_serie.link_video.split('/');
       this.id = ids[ids.length - 1];
@@ -60,6 +62,7 @@ export class MovieSerieComponent implements OnInit {
       this.categories = res.data.categories;
       this.related_movies = res.data.related;
       this.suscripcion = res.data.subscription;
+      this.playerVars.start = res.data.content.tiempo;
       this.spinner.hide();
     });
   }
@@ -78,8 +81,31 @@ export class MovieSerieComponent implements OnInit {
     });
   }
 
+  formatDate(date: Date) {
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    return (
+      date.getFullYear() +
+      '-' +
+      (month.toString().length == 1 ? '0' + month : month) +
+      '-' +
+      (day.toString().length == 1 ? '0' + day : day) + " " + (hours.toString().length == 1 ? '0' + hours : hours) + ":" + (minutes.toString().length == 1 ? '0' + minutes : minutes) + ":" + (seconds.toString().length == 1 ? '0' + seconds : seconds)
+    );
+  }
+
   onStateChange(event: any) {
     this.ytEvent = event.data;
+    if (this.ytEvent !== 1) {
+      this.general_service.postAuth('content', {
+        tiempo: Math.round(this.player.getCurrentTime()),
+        id_perfil: localStorage.getItem('profile'),
+        id_pelicula: this.route.snapshot.params['id'],
+        ultima_vez_visto: this.formatDate(new Date())
+      }).then((res) => console.log(res)).catch(err => console.log(err));
+    }
     if (this.suscripcion.tipo == 'gratis' && this.veces == 0) {
       if (this.ytEvent == 1) {
         setTimeout(() => {

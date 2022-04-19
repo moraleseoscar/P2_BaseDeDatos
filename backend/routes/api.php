@@ -11,7 +11,12 @@ use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Award\AwardController;
 use App\Http\Controllers\Anuncio\AnuncioController;
 use App\Http\Controllers\Reports\ReportsController;
+<<<<<<< HEAD
 use App\Http\Controllers\Favorite\FavoriteController;
+=======
+use App\Http\Controllers\Content\ContentController;
+
+>>>>>>> 68107450d3a25afab2da6a6ef06c88b080f04d56
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +30,9 @@ use App\Http\Controllers\Favorite\FavoriteController;
 */
 Route::get('/user', [UserController::class, 'get'])->middleware('auth:api');
 Route::get('/user-list', [UserController::class, 'list'])->middleware('auth:api');
+Route::get('/list-content-profile/{perfil}', [ContentController::class, 'listProfile'])->middleware('auth:api');
 Route::apiResource('/profile', ProfileController::class)->middleware('auth:api');
+Route::apiResource('/content', ContentController::class)->middleware('auth:api');
 Route::apiResource('/director', DirectorController::class)->middleware('auth:api');
 Route::apiResource('/film', MovieSerieController::class)->middleware('auth:api');
 Route::apiResource('/anuncio', AnuncioController::class)->middleware('auth:api');
@@ -36,7 +43,7 @@ Route::get('/some-directors', 'App\Http\Controllers\Director\DirectorController@
 Route::get('/some-awards', 'App\Http\Controllers\Award\AwardController@getSomeAwards')->middleware('auth:api');
 Route::apiResource('/award', ActorController::class)->middleware('auth:api');
 Route::apiResource('/movie-serie', MovieSerieController::class)->middleware('auth:api');
-Route::get('/show-movie-serie-detail/{id}', 'App\Http\Controllers\MovieSerie\MovieSerieController@showDetails')->middleware('auth:api');
+Route::get('/show-movie-serie-detail/{id}/{profile}', 'App\Http\Controllers\MovieSerie\MovieSerieController@showDetails')->middleware('auth:api');
 Route::get('/filter-movie-serie/{search}/{tipo}/{id}', 'App\Http\Controllers\MovieSerie\MovieSerieController@filterMovies')->middleware('auth:api');
 Route::apiResource('/category', CategoryController::class)->middleware('auth:api');
 Route::get('/verify-type', 'App\Http\Controllers\User\UserController@verifyType')->middleware('auth:api');
