@@ -11,12 +11,9 @@ use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Award\AwardController;
 use App\Http\Controllers\Anuncio\AnuncioController;
 use App\Http\Controllers\Reports\ReportsController;
-<<<<<<< HEAD
 use App\Http\Controllers\Favorite\FavoriteController;
-=======
 use App\Http\Controllers\Content\ContentController;
 
->>>>>>> 68107450d3a25afab2da6a6ef06c88b080f04d56
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +26,7 @@ use App\Http\Controllers\Content\ContentController;
 |
 */
 Route::get('/user', [UserController::class, 'get'])->middleware('auth:api');
+Route::get('/la-capital/{id}', [FavoriteController::class, 'laCapital'])->middleware('auth:api');
 Route::get('/user-list', [UserController::class, 'list'])->middleware('auth:api');
 Route::get('/list-content-profile/{perfil}', [ContentController::class, 'listProfile'])->middleware('auth:api');
 Route::apiResource('/profile', ProfileController::class)->middleware('auth:api');

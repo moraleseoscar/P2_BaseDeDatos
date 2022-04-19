@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Validator;
 
 class FavoriteController extends Controller
 {
+
+    public function laCapital($id) {
+        try {
+            $actores = \DB::select("SELECT * FROM peliculas_series ps INNER JOIN favoritos f ON f.id_pelicula = ps.id WHERE f.id_perfil = $id");
+            return response(["result" => 'success', 'data' => $actores], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
+
     public function index() {
         try {
             $favoritos = Favorite::all();
@@ -62,7 +72,7 @@ class FavoriteController extends Controller
     public function destroy(Favorite $fav) {
         try {
             $fav->delete();
-            return response(['result' => 'fail', 'message' => 'Favorito eliminada exitósamente.'], 500);
+            return response(['result' => 'fail', 'message' => 'Favorito eliminada exitósamente.'], 200);
         } catch (\Exception $e) {
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }

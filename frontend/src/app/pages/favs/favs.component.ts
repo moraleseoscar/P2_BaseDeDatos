@@ -20,10 +20,14 @@ export class FavsComponent implements OnInit {
   }
 
   getActors() {
-    this.general_service.getAuth('favs').then((res) => {
+    this.general_service.getAuth('la-capital/' + localStorage.getItem('profile')).then((res) => {
       this.actors = res.data;
       this.spinner.hide();
     });
+  }
+
+  goTo(id: number) {
+    this.router.navigate(['/movie-serie/' + id]);
   }
 
 }

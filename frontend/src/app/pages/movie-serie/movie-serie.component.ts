@@ -1,6 +1,5 @@
 import {
   Component,
-  OnDestroy,
   OnInit
 } from '@angular/core';
 import {
@@ -14,7 +13,6 @@ import {
   GeneralService
 } from 'src/app/services/general.service';
 import Swal from 'sweetalert2';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-movie-serie',
@@ -23,6 +21,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class MovieSerieComponent implements OnInit {
 
+  public favorito: any;
+  public favorito_exists: boolean = false;
   public movie_serie: any;
   public suscripcion: any;
   public awards: Array < any > = [];
@@ -38,11 +38,9 @@ export class MovieSerieComponent implements OnInit {
   private player: any;
   public ytEvent: any;
   public veces: number = 0;
-  public actor_form: FormGroup;
   public id_movie = '';
 
   constructor(private route: ActivatedRoute, private general_service: GeneralService, private router: Router, private spinner: NgxSpinnerService) {
-    this.actor_form = this.createFormGroup();
     this.id_movie = this.route.snapshot.params['id'];
   }
 
@@ -62,15 +60,12 @@ export class MovieSerieComponent implements OnInit {
       this.categories = res.data.categories;
       this.related_movies = res.data.related;
       this.suscripcion = res.data.subscription;
-      this.playerVars.start = res.data.content.tiempo;
+      this.playerVars.start = res.data.content ? res.data.content.tiempo : 0;
+      this.favorito = res.data.favorito;
+      if (this.favorito) {
+        this.favorito_exists = true;
+      }
       this.spinner.hide();
-    });
-  }
-
-  createFormGroup() {
-    return new FormGroup({
-      id_pelicula: new FormControl(),
-      id_perfil:new FormControl()
     });
   }
 
@@ -116,33 +111,35 @@ export class MovieSerieComponent implements OnInit {
     }
   }
 
-  addFav(){
-    this.actor_form.patchValue({ 
-      id_pelicula: this.id_movie,
-      id_perfil:  window.localStorage.getItem('profile')
-    });
-    this.general_service
-      .postAuth('fav', this.actor_form.value)
-      .then((res) => {
+  addFav() {
+    this.spinner.show();
+    if (this.favorito_exists) {
+      this.general_service.deleteAuth('fav/' + this.favorito.id).then(() => {
+        this.favorito_exists = false;
         this.spinner.hide();
-        Swal.fire({
-          icon: 'success',
-          title: res.message,
-          timer: 100,
-          confirmButtonText: 'Aceptar',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            console.log("Agregado a favoritos")
-          }
-        });
-      })
-      .catch((err) => {
+      }).catch(err => {
         this.spinner.hide();
         console.log(err);
       });
-  
+    } else {
+      const data = {
+        id_pelicula: this.id_movie,
+        id_perfil: window.localStorage.getItem('profile')
+      };
+      this.general_service
+        .postAuth('fav', data)
+        .then(() => {
+          this.spinner.hide();
+          this.favorito_exists = true;
+        })
+        .catch((err) => {
+          this.spinner.hide();
+          console.log(err);
+        });
+    }
+
   }
-  
+
   savePlayer(player: any) {
     this.player = player;
   }

@@ -33,4 +33,9 @@ export class GeneralService {
     return lastValueFrom(this.http.put((environment.api_url + endpoint), data, {headers}));
   }
 
+  deleteAuth(endpoint: string): Promise<any> {
+    const headers = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token'), 'Accept': 'application/json'});
+    return lastValueFrom(this.http.delete((environment.api_url + endpoint), {headers}));
+  }
+
 }
