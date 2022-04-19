@@ -11,7 +11,7 @@ use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Award\AwardController;
 use App\Http\Controllers\Anuncio\AnuncioController;
 use App\Http\Controllers\Reports\ReportsController;
-
+use App\Http\Controllers\Favorite\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +29,7 @@ Route::apiResource('/profile', ProfileController::class)->middleware('auth:api')
 Route::apiResource('/director', DirectorController::class)->middleware('auth:api');
 Route::apiResource('/film', MovieSerieController::class)->middleware('auth:api');
 Route::apiResource('/anuncio', AnuncioController::class)->middleware('auth:api');
+Route::apiResource('/fav', FavoriteController::class)->middleware('auth:api');
 Route::apiResource('/actor', ActorController::class)->middleware('auth:api');
 Route::get('/some-actors', 'App\Http\Controllers\Actor\ActorController@getSomeActors')->middleware('auth:api');
 Route::get('/some-directors', 'App\Http\Controllers\Director\DirectorController@getSomeDirectors')->middleware('auth:api');
