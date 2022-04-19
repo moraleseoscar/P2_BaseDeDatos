@@ -25,6 +25,7 @@ import {
 export class HomeComponent implements OnInit {
 
   public movies_series: Array < any > = [];
+  public content: Array < any > = [];
   public categories: Array < any > = [];
   public directores: Array < any > = [];
   public actores: Array < any > = [];
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMoviesSeries();
+    this.getContent();
     this.getAnuncios();
     this.getCategories();
     this.getActors();
@@ -70,6 +72,13 @@ export class HomeComponent implements OnInit {
     let url = 'filter-movie-serie/' + search_value + '/' + tipo + '/' + id;
     this.general_service.getAuth(url).then((res) => {
       this.movies_series = res.data;
+      this.spinner.hide();
+    });
+  }
+
+  getContent() {
+    this.general_service.getAuth("list-content-profile/" + localStorage.getItem('profile')).then((res) => {
+      this.content = res.data;
       this.spinner.hide();
     });
   }

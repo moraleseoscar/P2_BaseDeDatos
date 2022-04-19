@@ -26,6 +26,7 @@ use App\Http\Controllers\Content\ContentController;
 */
 Route::get('/user', [UserController::class, 'get'])->middleware('auth:api');
 Route::get('/user-list', [UserController::class, 'list'])->middleware('auth:api');
+Route::get('/list-content-profile/{perfil}', [ContentController::class, 'listProfile'])->middleware('auth:api');
 Route::apiResource('/profile', ProfileController::class)->middleware('auth:api');
 Route::apiResource('/content', ContentController::class)->middleware('auth:api');
 Route::apiResource('/director', DirectorController::class)->middleware('auth:api');
