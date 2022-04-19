@@ -68,13 +68,29 @@ export class MovieSerieComponent implements OnInit {
     });
   }
 
+  formatDate(date: Date) {
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    return (
+      date.getFullYear() +
+      '-' +
+      (month.toString().length == 1 ? '0' + month : month) +
+      '-' +
+      (day.toString().length == 1 ? '0' + day : day) + " " + (hours.toString().length == 1 ? '0' + hours : hours) + ":" + (minutes.toString().length == 1 ? '0' + minutes : minutes) + ":" + (seconds.toString().length == 1 ? '0' + seconds : seconds)
+    );
+  }
+
   onStateChange(event: any) {
     this.ytEvent = event.data;
-    if(this.ytEvent !== 1) {
+    if (this.ytEvent !== 1) {
       this.general_service.postAuth('content', {
         tiempo: Math.round(this.player.getCurrentTime()),
         id_perfil: localStorage.getItem('profile'),
-        id_pelicula: this.route.snapshot.params['id']
+        id_pelicula: this.route.snapshot.params['id'],
+        ultima_vez_visto: this.formatDate(new Date())
       }).then((res) => console.log(res)).catch(err => console.log(err));
     }
     if (this.suscripcion.tipo == 'gratis' && this.veces == 0) {
@@ -86,7 +102,7 @@ export class MovieSerieComponent implements OnInit {
       }
     }
   }
-  
+
   savePlayer(player: any) {
     this.player = player;
   }

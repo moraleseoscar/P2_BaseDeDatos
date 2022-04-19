@@ -22,6 +22,7 @@ class ContentController extends Controller
         try {
             $login_fallido = Content::where('id_pelicula', $request->id_pelicula)->where('id_perfil', $request->id_perfil)->first();
             $login_fallido->tiempo = $request->tiempo;
+            $login_fallido->ultima_vez_visto = $request->ultima_vez_visto;
             if(!$login_fallido->save()) {
                 return response(['result' => 'fail', 'message' => 'Error al actualizar intentos fallidos, por favor inténtelo más tarde.'], 500);
             }
@@ -30,6 +31,7 @@ class ContentController extends Controller
             $login_fallido->id_perfil = $request->id_perfil;
             $login_fallido->tiempo = $request->tiempo;
             $login_fallido->id_pelicula = $request->id_pelicula;
+            $login_fallido->ultima_vez_visto = $request->ultima_vez_visto;
             if(!$login_fallido->save()) {
                 return response(['result' => 'fail', 'message' => 'Error al actualizar intentos fallidos, por favor inténtelo más tarde.'], 500);
             }
