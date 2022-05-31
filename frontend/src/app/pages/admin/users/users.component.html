@@ -30,6 +30,9 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/admin/reports">Reportes</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/admin/simulation">Simulacion</a>
+                </li>
             </ul>
             <a class="nav-link text-light" style="cursor: pointer;" (click)="logout()">Logout <i class="bi bi-box-arrow-right"></i></a>
         </div>
@@ -61,7 +64,6 @@
                             <td>{{actor.nombre}}</td>
                             <td>{{actor.email}}</td>
                             <td>{{actor.tipo}}</td>
-                            <td>{{actor.fecha_estreno}}</td>
                             <td>
                                 <button (click)="edit(actor.id)" class="btn btn-warning">
                                     <i class="bi bi-pencil-fill"></i>

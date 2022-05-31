@@ -27,6 +27,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" routerLink="/admin/reports">Reportes</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/admin/simulation">Simulacion</a>
+                </li>
             </ul>
             <a class="nav-link text-light" routerLink="/login">Logout <i class="bi bi-box-arrow-right"></i></a>
         </div>
@@ -38,15 +41,18 @@
     <!-- Tabla query 1 -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <p class="h3">El top 10 de géneros de contenido más visto, y los minutos consumidos para un rango de fechas dado</p>
-            <p class="h5">
-                <label for="fechai_tb1">Ingresar fecha inicial (YYYY-MM-DD)</label>
-            </p>
-            <input type="text" id="fecha_inicio_tabla1"  name="fechai_tb1">
-            <p class="h5">
-                <label for="fechaf_tb1">Ingresar fecha final (YYYY-MM-DD)</label>
-            </p>
-            <input type="text" id="fecha_final_tabla1"  name="fechaf_tb1">  
+            <p class="h3">El top 10 de géneros de contenido más visto, y los minutos consumidos para un rango de fechas
+                dado</p>
+            <div class="row">
+                <div class="col">
+                    <label for="fechai_tb1">Ingresar fecha inicial (YYYY-MM-DD)</label>
+                    <input class="form-control" type="text" id="fecha_inicio_tabla1" name="fechai_tb1">
+                </div>
+                <div class="col">
+                    <label for="fechaf_tb1">Ingresar fecha final (YYYY-MM-DD)</label>
+                    <input class="form-control" type="text" id="fecha_final_tabla1" name="fechaf_tb1">
+                </div>
+            </div><br>
             <div>
                 <button (click)="sendQ1()" class="btn btn-warning">
                     Enviar fechas
@@ -54,7 +60,7 @@
                 </button>
             </div>
         </div>
-      
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover" id="dataTable1" width="100%"
@@ -79,22 +85,25 @@
     <!-- Tabla query 2  -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <p class="h3">Cantidad de reproducciones por cada categoría, por tipo de cuenta para un rango de fechas dado.</p>
-            <p class="h5">
-                <label for="fechai_tb2">Ingresar fecha inicial (YYYY-MM-DD)</label>
-            </p>
-            <input type="text" id="fecha_inicio_tabla2"  name="fechai_tb2">
-            <p class="h5">
-                <label for="fechaf_tb2">Ingresar fecha final (YYYY-MM-DD)</label>
-            </p>
-            <input type="text" id="fecha_final_tabla2"  name="fechaf_tb2">  
+            <p class="h3">Cantidad de reproducciones por cada categoría, por tipo de cuenta para un rango de fechas
+                dado.</p>
+            <div class="row">
+                <div class="col">
+                    <label for="fechai_tb2">Ingresar fecha inicial (YYYY-MM-DD)</label>
+                    <input class="form-control" type="text" id="fecha_inicio_tabla2" name="fechai_tb2">
+                </div>
+                <div class="col">
+                    <label for="fechaf_tb2">Ingresar fecha final (YYYY-MM-DD)</label>
+                    <input class="form-control" type="text" id="fecha_final_tabla2" name="fechaf_tb2">
+                </div>
+            </div><br>
             <div>
                 <button (click)="sendQ2()" class="btn btn-warning">
                     Enviar fechas
                     <i class="bi bi-send"></i>
                 </button>
             </div>
-        
+
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -117,7 +126,7 @@
                 </table>
             </div>
         </div>
-    
+
     </div>
     <!-- Tabla query 3 (actores) -->
     <div class="card shadow mb-4">
@@ -144,7 +153,7 @@
                 </table>
             </div>
         </div>
-    
+
     </div>
     <!-- Tabla query 3 (directores) -->
     <div class="card shadow mb-4">
@@ -171,7 +180,7 @@
                 </table>
             </div>
         </div>
-    
+
     </div>
     <!-- Tabla query 4 -->
     <div class="card shadow mb-4">
@@ -195,16 +204,19 @@
                 </table>
             </div>
         </div>
-    
+
     </div>
     <!-- Tabla query 5 -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <p class="h3">Para una fecha específica, ¿cuál es la hora pico donde el servicio es más utilizado?.</p>
-            <p class="h5">
-                <label for="fecha_tb5">Ingresar fecha (YYYY-MM-DD)</label>
-            </p>
-            <input type="text" id="fecha_tabla5"  name="fecha_tb5">  
+            <div class="row">
+                <div class="col-6">
+                    <label for="fecha_tb5">Ingresar fecha (YYYY-MM-DD)</label>
+                    <input class="form-control" type="text" id="fecha_tabla5" name="fecha_tb5">
+                </div>
+            </div>
+            <br>
             <div>
                 <button (click)="sendQ5()" class="btn btn-warning">
                     Enviar fecha
@@ -232,6 +244,154 @@
                 </table>
             </div>
         </div>
-    
+    </div>
+    <h2>
+        Reportería parte 2
+    </h2>
+    <!-- Tabla query 6 -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <p class="h3">Top 5 contenido visto en cada hora segun mes.</p>
+            <div class="row">
+                <div class="col">
+                    <label for="fecha_tb5">Ingresar hora (9:00 am - 1:00 am)</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="10:00">
+                </div>
+                <div class="col">
+                    <label for="fecha_tb5">Seleccionar mes</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected disabled>Selecciona el mes</option>
+                        <option value="1">Enero</option>
+                        <option value="2">Febrero</option>
+                        <option value="3">Marzo</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Mayo</option>
+                        <option value="6">Junio</option>
+                        <option value="7">Julio</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Septiembre</option>
+                        <option value="10">Octubre</option>
+                        <option value="11">Noviembre</option>
+                        <option value="12">Diciembre</option>
+                    </select>
+                </div>
+            </div><br>
+            <div>
+                <button (click)="sendQ5()" class="btn btn-warning">
+                    Buscar
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" id="dataTable6" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Total visualizaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let q5 of query5">
+                            <td>{{q5.hora}}</td>
+                            <td>{{q5.visualizaciones}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Tabla query 7 -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <p class="h3">Top 10 términos más buscados.</p>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" id="dataTable5" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Busqueda</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let q4 of query4">
+                            <td></td>
+                            <td>{{q4.count}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Tabla query 8 -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <p class="h3">Top 5 administradores con más modificaciones.</p>
+            <div class="row">
+                <div class="col">
+                    <label for="fechai_tb2">Ingresar fecha inicial (YYYY-MM-DD)</label>
+                    <input class="form-control" type="text" id="fecha_inicio_tabla2" name="fechai_tb2">
+                </div>
+                <div class="col">
+                    <label for="fechaf_tb2">Ingresar fecha final (YYYY-MM-DD)</label>
+                    <input class="form-control" type="text" id="fecha_final_tabla2" name="fechaf_tb2">
+                </div>
+            </div><br>
+            <div>
+                <button (click)="sendQ2()" class="btn btn-warning">
+                    Enviar fechas
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" id="dataTable5" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Busqueda</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let q4 of query4">
+                            <td></td>
+                            <td>{{q4.count}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Tabla query 7 -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <p class="h3">Top 20 películas con más de 20 días sin finalizar.</p>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" id="dataTable5" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Película</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let q4 of query4">
+                            <td></td>
+                            <td>{{q4.count}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
