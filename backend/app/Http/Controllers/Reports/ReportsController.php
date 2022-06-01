@@ -99,6 +99,33 @@ class ReportsController extends Controller
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }
     }
+    public function createSimulation($fecha, $cantidad) {
+        try {
+            $usuarios = \DB::select(
+                "SELECT * FROM users"
+            );
+            $movies = \DB::select(
+                "SELECT * FROM peliculas_series"
+            ); 
 
+            $entrada = array('false', 'true');
+            
+            
+            for ($i = 1; $i <= $cantidad; $i++) {
+                $estado = $entrada[array_rand($entrada)];
+                $usuario =  $usuarios[array_rand($usuarios)]->id;
+                $pelicula = $movies[array_rand($movies)]->id;
+                $tiempo = rand(1, 10);
+
+                \DB::insert(    
+                    "INSERT INTO contenido (id_pelicula, id_perfil, tiempo, ultima_vez_visto, inicio_de_visualizacion, estado) 
+                    VALUES ($pelicula, $usuario, $tiempo, '$fecha'::TIMESTAMP, '$fecha'::TIMESTAMP, $estado::Bool)"
+                );
+            };
+            return response(["result" => 'success'], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
 }
 
