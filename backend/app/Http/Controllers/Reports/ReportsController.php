@@ -156,7 +156,7 @@ class ReportsController extends Controller
     public function getTop20LeftBehindContent($fecha_inicial, $fecha_final) {
         try {
             $top20LeftBehindContent = \DB::select(
-                "SELECT * FROM top_20_left_behind_content($fecha_inicial, $fecha_final)
+                "SELECT * FROM top_20_left_behind_content('$fecha_inicial', '$fecha_final')
                 "
             );
             return response(["result" => 'success', "data" => ["top20LeftBehindContent" => $top20LeftBehindContent]], 200);

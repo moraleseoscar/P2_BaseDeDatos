@@ -111,12 +111,9 @@ AS $$
 END; $$
 LANGUAGE PLPGSQL;
 
-<<<<<<< HEAD
 select * from users
 select * from contenido
 select * from top_5_content_per_month(2022, 4)
-=======
-SELECT * FROM top_5_content_per_month(2022, 4) 
->>>>>>> 11778fb1b55aaeff7a96f99731271dd4f8b04a55
+
 
 	
