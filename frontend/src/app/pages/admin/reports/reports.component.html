@@ -436,4 +436,76 @@
             </div>
         </div>
     </div>
+    <!-- Nueva query 2 -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <p class="h3">Top 10 de palabras buscadas.</p>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" id="dataTable5" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Término</th>
+                            <th>Veces Buscada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let nq2 of newQuery2">
+                            <td>{{nq2.palabra_clave}}</td>
+                            <td>{{nq2.veces_buscada}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <!-- Nueva query 4-->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <p class="h3">El top 20 de películas que comenzaron a verse pero que llevan más de 20 días sin
+                finalizarse, para un rango de fechas dado.</p>
+            <div class="row">
+                <div class="col">
+                    <label for="fecha_inicio_tabla_new_q4_1">Ingresar fecha inicial (YYYY-MM-DD)</label>
+                    <input class="form-control" type="text" id="fecha_inicio_tabla_new_q4_1" name="fecha_inicio_tabla_new_q4_1">
+                </div>
+                <div class="col">
+                    <label for="fecha_inicio_tabla_new_q4_2">Ingresar fecha final (YYYY-MM-DD)</label>
+                    <input class="form-control" type="text" id="fecha_inicio_tabla_new_q4_2" name="fecha_inicio_tabla_new_q4_2">
+                </div>
+            </div><br>
+            <div>
+                <button (click)="sendNewQuery4()" class="btn btn-warning">
+                    Enviar fechas
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" id="dataTable2" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Titulo</th>
+                            <th>Veces abandonada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let nq4 of newQuery4">
+                            <td>{{nq4.id_pelicula}}</td>
+                            <td>{{nq4.titulo_pelicula}}</td>
+                            <td>{{nq4.veces_dejada}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
 </div>

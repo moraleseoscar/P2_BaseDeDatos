@@ -139,5 +139,30 @@ class ReportsController extends Controller
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }
     }
+    public function getTop10Busquedas() {
+        try {
+            $top10Busquedas = \DB::select(
+                "SELECT palabra_clave, COUNT(palabra_clave) AS veces_buscada FROM busquedas
+                GROUP BY palabra_clave
+                ORDER BY veces_buscada DESC
+                LIMIT 10"
+            );
+            return response(["result" => 'success', "data" => ["top10Busquedas" => $top10Busquedas]], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function getTop20LeftBehindContent($fecha_inicial, $fecha_final) {
+        try {
+            $top20LeftBehindContent = \DB::select(
+                "SELECT * FROM top_20_left_behind_content($fecha_inicial, $fecha_final)
+                "
+            );
+            return response(["result" => 'success', "data" => ["top20LeftBehindContent" => $top20LeftBehindContent]], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
 }
 
