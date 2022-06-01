@@ -16,6 +16,7 @@ export class ReportsComponent implements OnInit {
   public query4 : Array<any> = [];
   public query5: Array<any> = [];
   public actors: Array<any> = [];
+  public newQuery1: Array<any> = [];
 
 
   constructor(private general_service: GeneralService, private router: Router, private spinner: NgxSpinnerService) { }
@@ -25,6 +26,7 @@ export class ReportsComponent implements OnInit {
     this.getQuery3();
     this.getQuery3_1();
     this.getQuery4();
+    this.getNewQuery1();
   }
 
   getQuery1() {
@@ -80,6 +82,18 @@ export class ReportsComponent implements OnInit {
       console.log("No se ingreso alguna fecha")
     }
   }
+  getNewQuery1(){
+    let mes = (<HTMLInputElement>document.getElementById("fecha_tabla_new_query_1")).value;
+    if(mes){
+      this.general_service.getAuth(`top-5-content-per-month/2022/${mes}`).then((res) => {
+        this.newQuery1 = res.data["top5ContentPerMonth"];
+        this.spinner.hide();
+    });
+    }else{
+      console.log("No se ingreso ningun mes")
+    }
+
+  }
   sendQ1() {
     this.getQuery1();
   }
@@ -88,6 +102,9 @@ export class ReportsComponent implements OnInit {
   }
   sendQ5(){
     this.getQuery5();
+  }
+  sendNewQuery1(){
+    this.getNewQuery1();
   }
   edit(id: string) {
     this.router.navigate(['admin/director/' + id]);

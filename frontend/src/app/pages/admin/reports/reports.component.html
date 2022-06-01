@@ -394,4 +394,46 @@
             </div>
         </div>
     </div>
+    <!-- Nueva query 1 -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <p class="h3">Top 5 de contenido visto cada hora de 9am a 1am</p>
+            <div class="row">
+                <div class="col-6">
+                    <label for="fecha_tabla_new_query_1">Ingresar mes (numero del 1 al 12)</label>
+                    <input class="form-control" type="text" id="fecha_tabla_new_query_1" name="fecha_tabla_new_query_1">
+                </div>
+            </div>
+            <br>
+            <div>
+                <button (click)="sendNewQuery1()" class="btn btn-warning">
+                    Enviar fecha
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" id="dataTable6" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Tiempo visualizado</th>
+                            <th>Posicion</th>
+                            <th>Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let nq1 of newQuery1">
+                            <td>{{nq1.movie_title}}</td>
+                            <td>{{nq1.tiempo_visto}}</td>
+                            <td>{{nq1.s_position}}</td>
+                            <td>{{nq1.hora}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

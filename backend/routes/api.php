@@ -63,8 +63,12 @@ Route::get('/created-account-6-months', 'App\Http\Controllers\Reports\ReportsCon
 
 Route::get('/hora-pico-por-fecha/{name}', 'App\Http\Controllers\Reports\ReportsController@getHoraPicoPorFecha')->middleware('auth:api');
 
+<<<<<<< HEAD
 
 
 
 
 Route::get('/simulacion/{fecha}/{cantidad}', 'App\Http\Controllers\Reports\ReportsController@createSimulation')->middleware('auth:api');
+=======
+Route::get('/top-5-content-per-month/{name}/{name2}', 'App\Http\Controllers\Reports\ReportsController@getTop5ContentPerMonth')->middleware('auth:api');
+>>>>>>> a0f6ac8de7622bd30c7b699416099b042e59441e
