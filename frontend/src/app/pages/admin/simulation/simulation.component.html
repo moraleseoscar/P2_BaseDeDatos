@@ -67,15 +67,18 @@
             <table class="table table-bordered table-striped table-hover" id="dataTable6" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Hora</th>
+                        <th>Fecha</th>
                         <th>Usuario</th>
+                        <th>Tabla</th>
                         <th>Accion</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
+                    <tr *ngFor="let a of bitacora">
+                        <td>{{a.fecha}}</td>
+                        <td>{{a.nombre}}</td>
+                        <td>{{a.tabla}}</td>
+                        <td>{{a.accion}}</td>
                     </tr>
                 </tbody>
             </table>

@@ -10,11 +10,21 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class SimulationComponent implements OnInit {
   public query1: Array<any> = [];
+  public bitacora: Array<any> = [];
 
   constructor(private general_service: GeneralService, private router: Router, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
-    // this.spinner.show();
+    this.spinner.show();
+    this.getBitacora();
+  }
+
+  getBitacora() {
+    this.general_service.getAuth('bitacora').then((res) => {
+      console.log(res);
+      this.bitacora = res.data;
+      this.spinner.hide();
+    })
   }
 
   getQuery1() {

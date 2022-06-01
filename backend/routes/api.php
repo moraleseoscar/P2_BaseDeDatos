@@ -13,7 +13,7 @@ use App\Http\Controllers\Anuncio\AnuncioController;
 use App\Http\Controllers\Reports\ReportsController;
 use App\Http\Controllers\Favorite\FavoriteController;
 use App\Http\Controllers\Content\ContentController;
-
+use App\Http\Controllers\Bitacora\BitacoraController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +27,7 @@ use App\Http\Controllers\Content\ContentController;
 */
 Route::get('/user', [UserController::class, 'get'])->middleware('auth:api');
 Route::get('/user/{id}', [UserController::class, 'show'])->middleware('auth:api');
+Route::get('/bitacora', [BitacoraController::class, 'getBitacora'])->middleware('auth:api');
 Route::post('/user', [UserController::class, 'save_user'])->middleware('auth:api');
 Route::put('/user', [UserController::class, 'update'])->middleware('auth:api');
 Route::get('/delete-user/{id}', [UserController::class, 'destroy'])->middleware('auth:api');
