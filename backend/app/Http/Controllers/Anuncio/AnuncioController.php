@@ -34,8 +34,8 @@ class AnuncioController extends Controller
                 return response(['result' => 'fail', 'message' => $categories_validator->errors()], 500);
             }
 
-            /* $data['id_usuario'] = auth()->user()->id;
-            $data['activo'] = true; */
+            $data['id_usuario'] = auth()->user()->id;
+            /*$data['activo'] = true; */
             
             Anuncio::create($data);
             

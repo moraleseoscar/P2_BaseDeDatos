@@ -40,6 +40,8 @@ class ActorController extends Controller
                 return response(['result' => 'fail', 'message' => $actor_validator->errors()], 500);
             }
             
+            $data['id_usuario'] = auth()->user()->id;
+            
             Actor::create($data);
             
             return ['result' => 'success', "message"=> 'Actor almacenado exitósamente.'];

@@ -9,6 +9,6 @@ class MovieSerie extends Model
 {
     use HasFactory;
     protected $table = 'peliculas_series';
-    protected $fillable = ['id', 'nombre', 'id_director', 'tipo', 'fecha_estreno', 'descripcion', 'duracion', 'link_video', 'portada'];
+    protected $fillable = ['id', 'nombre', 'id_director', 'tipo', 'fecha_estreno', 'descripcion', 'duracion', 'link_video', 'portada', 'id_usuario'];
     public $timestamps = false;
 }

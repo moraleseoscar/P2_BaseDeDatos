@@ -9,6 +9,6 @@ class Anuncio extends Model
 {
     use HasFactory;
     protected $table = 'anuncios';
-    protected $fillable = ['id', 'imagen', 'background', 'nombre', 'descripcion'];
+    protected $fillable = ['id', 'imagen', 'background', 'nombre', 'descripcion', 'id_usuario'];
     public $timestamps = false;
 }

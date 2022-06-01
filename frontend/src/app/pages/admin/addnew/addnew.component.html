@@ -73,7 +73,7 @@
         </div><br>
         <div class="form-group">
             <label>Fecha de estreno</label>
-            <input formControlName="fecha_estreno" class="form-control" placeholder="Nombre">
+            <input formControlName="fecha_estreno" class="form-control" placeholder="Nombre" type="date">
             <div class="errors" *ngIf="fecha_estreno?.invalid && (fecha_estreno?.dirty || fecha_estreno?.touched)">
                 <span *ngIf="fecha_estreno?.errors?.['required']">
                     <small>La fecha de estreno es requerida.</small>
