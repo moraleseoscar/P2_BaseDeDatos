@@ -436,4 +436,30 @@
             </div>
         </div>
     </div>
+    <!-- Nueva query 2 -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <p class="h3">Top 10 de palabras buscadas.</p>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" id="dataTable5" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Término</th>
+                            <th>Veces Buscada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let nq2 of newQuery2">
+                            <td>{{nq2.palabra_clave}}</td>
+                            <td>{{nq2.veces_buscada}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
 </div>
