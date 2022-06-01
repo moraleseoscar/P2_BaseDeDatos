@@ -1,0 +1,20 @@
+CREATE TABLE bitacora(
+	idUsuario		BIGSERIAL,
+	accion			VARCHAR(12),
+	
+	
+);
+
+
+CREATE FUNCTION save_activity()
+RETURNS TRIGGER AS $$
+BEGIN
+	
+	
+END
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER 
+
+

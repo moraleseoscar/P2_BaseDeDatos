@@ -245,90 +245,12 @@
             </div>
         </div>
     </div>
+
+    <!-------------------------------------------------------------- PARTE 2-------------------------------------------------->
     <h2>
         Reportería parte 2
     </h2>
-    <!-- Tabla query 6 -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <p class="h3">Top 5 contenido visto en cada hora segun mes.</p>
-            <div class="row">
-                <div class="col">
-                    <label for="fecha_tb5">Ingresar hora (9:00 am - 1:00 am)</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="10:00">
-                </div>
-                <div class="col">
-                    <label for="fecha_tb5">Seleccionar mes</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected disabled>Selecciona el mes</option>
-                        <option value="1">Enero</option>
-                        <option value="2">Febrero</option>
-                        <option value="3">Marzo</option>
-                        <option value="4">Abril</option>
-                        <option value="5">Mayo</option>
-                        <option value="6">Junio</option>
-                        <option value="7">Julio</option>
-                        <option value="8">Agosto</option>
-                        <option value="9">Septiembre</option>
-                        <option value="10">Octubre</option>
-                        <option value="11">Noviembre</option>
-                        <option value="12">Diciembre</option>
-                    </select>
-                </div>
-            </div><br>
-            <div>
-                <button (click)="sendQ5()" class="btn btn-warning">
-                    Buscar
-                    <i class="bi bi-send"></i>
-                </button>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover" id="dataTable6" width="100%"
-                    cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Titulo</th>
-                            <th>Total visualizaciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let q5 of query5">
-                            <td>{{q5.hora}}</td>
-                            <td>{{q5.visualizaciones}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <!-- Tabla query 7 -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <p class="h3">Top 10 términos más buscados.</p>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover" id="dataTable5" width="100%"
-                    cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Busqueda</th>
-                            <th>Cantidad</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let q4 of query4">
-                            <td></td>
-                            <td>{{q4.count}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <!-- Tabla query 8 -->
+    <!-- Tabla query 1 -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <p class="h3">Top 5 administradores con más modificaciones.</p>
@@ -369,10 +291,52 @@
             </div>
         </div>
     </div>
-    <!-- Tabla query 7 -->
+    <!-- Nueva query 2 -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <p class="h3">Top 20 películas con más de 20 días sin finalizar.</p>
+            <p class="h3">Top 5 de contenido visto cada hora de 9am a 1am</p>
+            <div class="row">
+                <div class="col-6">
+                    <label for="fecha_tabla_entrega2_1">Ingresar mes (numero del 1 al 12)</label>
+                    <input class="form-control" type="text" id="fecha_tabla_entrega2_1" name="fecha_tabla_entrega2_1">
+                </div>
+            </div>
+            <br>
+            <div>
+                <button (click)="sendNewQuery1()" class="btn btn-warning">
+                    Enviar fecha
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" id="dataTable6" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Tiempo visualizado</th>
+                            <th>Posicion</th>
+                            <th>Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let nq1 of newQuery1">
+                            <td>{{nq1.movie_title}}</td>
+                            <td>{{nq1.tiempo_visto}}</td>
+                            <td>{{nq1.s_position}}</td>
+                            <td>{{nq1.hora}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Nueva query 3 -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <p class="h3">Top 10 de palabras buscadas.</p>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -380,18 +344,64 @@
                     cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Película</th>
-                            <th>Cantidad</th>
+                            <th>Término</th>
+                            <th>Veces Buscada</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let q4 of query4">
-                            <td></td>
-                            <td>{{q4.count}}</td>
+                        <tr *ngFor="let nq2 of newQuery2">
+                            <td>{{nq2.palabra_clave}}</td>
+                            <td>{{nq2.veces_buscada}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+    </div>
+
+    <!-- Nueva query 4 -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <p class="h3">El top 20 de películas que comenzaron a verse pero que llevan más de 20 días sin
+                finalizarse, para un rango de fechas dado.</p>
+            <div class="row">
+                <div class="col">
+                    <label for="fecha_inicio_tabla_new_q4_1">Ingresar fecha inicial (YYYY-MM-DD)</label>
+                    <input class="form-control" type="text" id="fecha_inicio_tabla_new_q4_1" name="fecha_inicio_tabla_new_q4_1">
+                </div>
+                <div class="col">
+                    <label for="fecha_inicio_tabla_new_q4_2">Ingresar fecha final (YYYY-MM-DD)</label>
+                    <input class="form-control" type="text" id="fecha_inicio_tabla_new_q4_2" name="fecha_inicio_tabla_new_q4_2">
+                </div>
+            </div><br>
+            <div>
+                <button (click)="sendNewQuery4()" class="btn btn-warning">
+                    Enviar fechas
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" id="dataTable2" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Titulo</th>
+                            <th>Veces abandonada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let nq4 of newQuery4">
+                            <td>{{nq4.id_pelicula}}</td>
+                            <td>{{nq4.titulo_pelicula}}</td>
+                            <td>{{nq4.veces_dejada}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 </div>
