@@ -42,16 +42,16 @@
             <p class="h3">Simulación de visualizaciones.</p>
             <div class="row">
                 <div class="col">
-                    <label for="fechai_tb2">Ingresar fecha de simulación (YYYY-MM-DD)</label>
-                    <input class="form-control" type="text" id="fecha_inicio_tabla2" name="fechai_tb2">
+                    <label for="fecha_inicio_tabla1">Ingresar fecha de simulación (YYYY-MM-DD)</label>
+                    <input class="form-control" type="text" id="fecha_inicio_tabla1" name="fecha_inicio_tabla1">
                 </div>
                 <div class="col">
-                    <label for="fechaf_tb2">Ingresar cantidad de visualizaciones a agregar</label>
-                    <input class="form-control" type="text">
+                    <label for="cantidad">Ingresar cantidad de visualizaciones a agregar</label>
+                    <input class="form-control" type="text" id="cantidad" name="cantidad">
                 </div>
             </div><br>
             <div>
-                <button (click)="sendQ5()" class="btn btn-warning">
+                <button (click)="sendQ1()" class="btn btn-warning">
                     Simular
                     <i class="bi bi-cpu-fill"></i>
                 </button>
@@ -73,9 +73,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let q5 of query5">
-                        <td>{{q5.hora}}</td>
-                        <td>{{q5.visualizaciones}}</td>
+                    <tr>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
