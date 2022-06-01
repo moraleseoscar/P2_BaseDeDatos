@@ -99,6 +99,15 @@ class ReportsController extends Controller
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }
     }
-
+    public function getTop5ContentPerMonth($year, $month) {
+        try {
+            $top5ContentPerMonth = \DB::select(
+                "SELECT * FROM top_5_content_per_month($year, $month)"
+            );
+            return response(["result" => 'success', "data" => ["top5ContentPerMonth" => $top5ContentPerMonth]], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
 }
 
