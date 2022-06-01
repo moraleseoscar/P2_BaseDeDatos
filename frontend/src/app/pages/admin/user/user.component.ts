@@ -15,6 +15,7 @@ export class UserComponent implements OnInit {
   public actor_form: FormGroup;
   public id: string = '';
   public title: string = 'Crear';
+  private pattern : any = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   constructor(private route: ActivatedRoute, private general_service: GeneralService, private router: Router, private spinner: NgxSpinnerService) {
     this.actor_form = this.createFormGroup();
@@ -30,21 +31,32 @@ export class UserComponent implements OnInit {
 
   editFormGroup() {
     this.general_service.getAuth('user/' + this.id).then((res) => {
-      this.actor_form.patchValue({ nombre: res.data.nombre });
+      this.actor_form.patchValue({ nombre: res.data.nombre, email: res.data.email, password: 1, password_confirmation: 1, tipo: res.data.tipo == 'admin' ? true : false });
     });
   }
 
   createFormGroup() {
     return new FormGroup({
-      nombre: new FormControl('', [Validators.required])
+      email: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+      password_confirmation: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+      nombre: new FormControl('', [Validators.required]),
+      tipo: new FormControl('', [Validators.required]),
     });
   }
 
   submit() {
     this.spinner.show();
     if (this.id) {
+      const objU = { ...this.actor_form.value, tipo: this.actor_form.value.tipo == true ? 'admin' : 'client', id: this.id};
       this.general_service
-        .putAuth('user/' + this.id, this.actor_form.value)
+        .putAuth('user', objU)
         .then((res) => {
           this.spinner.hide();
           Swal.fire({
@@ -69,8 +81,9 @@ export class UserComponent implements OnInit {
           });
         });
     } else {
+      const objP = { ...this.actor_form.value, tipo: this.actor_form.value.tipo == true ? 'admin' : 'client' };
       this.general_service
-        .postAuth('user', this.actor_form.value)
+        .postAuth('user', objP)
         .then((res) => {
           this.spinner.hide();
           Swal.fire({
@@ -100,6 +113,22 @@ export class UserComponent implements OnInit {
   get nombre() {
     return this.actor_form.get('nombre');
   }
+
+  get tipo() {
+    return this.actor_form.get('tipo');
+  }
+
+  get email() {
+    return this.actor_form.get('email');
+  }
+
+  get password() {
+    return this.actor_form.get('password');
+  }
+
+  get password_confirmation() {
+    return this.actor_form.get('password_confirmation');
+  }  
 
 }
 

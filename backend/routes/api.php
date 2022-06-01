@@ -26,6 +26,9 @@ use App\Http\Controllers\Content\ContentController;
 |
 */
 Route::get('/user', [UserController::class, 'get'])->middleware('auth:api');
+Route::get('/user/{id}', [UserController::class, 'show'])->middleware('auth:api');
+Route::post('/user', [UserController::class, 'save_user'])->middleware('auth:api');
+Route::put('/user', [UserController::class, 'update'])->middleware('auth:api');
 Route::get('/la-capital/{id}', [FavoriteController::class, 'laCapital'])->middleware('auth:api');
 Route::get('/user-list', [UserController::class, 'list'])->middleware('auth:api');
 Route::get('/list-content-profile/{perfil}', [ContentController::class, 'listProfile'])->middleware('auth:api');

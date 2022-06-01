@@ -54,6 +54,58 @@ class UserController extends Controller
         ]);
     }
 
+    public function update(Request $request) {
+        $usuario = User::find($request->id);
+        $usuario->nombre = $request->nombre;
+        $usuario->email = $request->email;
+        $usuario->tipo = $request->tipo;
+
+        if(!$usuario->save()) {
+            return response(['result' => 'fail', 'message' => 'Error al actualizar usuario, por favor inténtelo más tarde.'], 500);
+        }
+        
+        return response([
+            'result' => 'success', 
+            "message"=> 'Administrador actualizado exitósamente.'
+        ]);
+    }
+
+    public function show($id) {
+        try {
+            $user = User::where('id', $id)->first();
+            return response(["result" => 'success', "data" => $user], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function save_user(Request $request) {
+        $validar = Validator::make($request->all(), [
+            'nombre' => 'required|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed',
+            'tipo' => 'required'
+        ]);
+
+        if ($validar->fails()) {
+            return response(['result' => 'fail', 'message' => $validar->errors()], 500);
+        }
+
+        $usuario = new User();
+        $usuario->nombre = $request->nombre;
+        $usuario->email = $request->email;
+        $usuario->tipo = $request->tipo;
+        $usuario->password = Hash::make($request->password);
+        if(!$usuario->save()) {
+            return response(['result' => 'fail', 'message' => 'Error al crear usuario, por favor inténtelo más tarde.'], 500);
+        }
+        
+        return response([
+            'result' => 'success', 
+            "message"=> 'Administrador creado exitósamente.'
+        ]);
+    }
+
     public function login(Request $request) {
         $validar = $request->validate([
             'email' => 'required|email',

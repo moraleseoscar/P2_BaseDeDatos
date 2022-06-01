@@ -51,12 +51,53 @@
                     <small>El nombre es requerido.</small>
                 </span>
             </div><br>
+            <label>Email</label>
+            <input type="text" formControlName="email" class="form-control" aria-describedby="emailHelp"
+                placeholder="Email">
+            <div class="errors" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+                <span *ngIf="email?.errors?.['required']">
+                    <small>El correo es requerido</small>
+                </span>
+                <span *ngIf="(email?.dirty || email?.touched) && email?.invalid && email?.errors?.['pattern']">
+                    <small>Ingrese un email válido.</small>
+                </span>
+            </div><br>
+            <ng-container *ngIf="!id">
+                <label>Contraseña</label>
+                <input type="password" formControlName="password" class="form-control" aria-describedby="emailHelp"
+                    placeholder="Contraseña">
+                <div class="errors" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+                    <span *ngIf="password?.errors?.['minlength']">
+                        <small>La contraseña debe tener al menos 6 caracteres.</small>
+                    </span>
+                    <span *ngIf="password?.errors?.['required']">
+                        <small>Este campo es requerido.</small>
+                    </span>
+                </div><br>
+                <label>Confirmar contraseña</label>
+                <input type="password" formControlName="password_confirmation" class="form-control"
+                    aria-describedby="emailHelp" placeholder="Confirmar contraseña">
+                <div class="errors"
+                    *ngIf="password_confirmation?.invalid && (password_confirmation?.dirty || password_confirmation?.touched)">
+                    <span *ngIf="password_confirmation?.errors?.['minlength']">
+                        <small>La contraseña debe tener al menos 6 caracteres.</small>
+                    </span>
+                    <span *ngIf="password_confirmation?.errors?.['required']">
+                        <small>Este campo es requerido.</small>
+                    </span>
+                </div><br>
+            </ng-container>
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <input class="form-check-input" formControlName="tipo" type="checkbox" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Dar permisos de administrador</label>
             </div>
+            <div class="errors" *ngIf="tipo?.invalid && (tipo?.dirty || tipo?.touched)">
+                <span *ngIf="tipo?.errors?.['required']">
+                    <small>El tipo es requerido.</small>
+                </span>
+            </div>
         </div><br>
-        
+        <button type="button" routerLink="/admin/users" class="btn btn-secondary m-1">Regresar</button>
         <button type="submit" class="btn btn-primary" [disabled]="!actor_form.valid">Guardar</button>
     </form>
 </div>
