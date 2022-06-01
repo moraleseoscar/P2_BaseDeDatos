@@ -41,7 +41,7 @@ export class UsersComponent implements OnInit {
   }
 
   edit(id: string) {
-    this.router.navigate(['admin/addnew/' + id]);
+    this.router.navigate(['admin/user/' + id]);
   }
 
 }

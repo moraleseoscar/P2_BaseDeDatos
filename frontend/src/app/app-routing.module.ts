@@ -36,6 +36,16 @@ const routes: Routes = [{
     loadChildren: () => import('./pages/admin/users/users.module').then(m => m.UsersModule)
   },
   {
+    path: 'admin/user',
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./pages/admin/user/user.module').then(m => m.UserModule)
+  },
+  {
+    path: 'admin/user/:id',
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./pages/admin/user/user.module').then(m => m.UserModule)
+  },
+  {
     path: 'admin/film',
     canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/addnew/addnew.module').then(m => m.AddnewModule)
@@ -123,8 +133,13 @@ const routes: Routes = [{
   { 
     path: 'admin/reports',
     canActivate: [AdminGuard], 
-    loadChildren: () => import('./pages/admin/reports/reports.module').then(m => m.ReportsModule) }
-
+    loadChildren: () => import('./pages/admin/reports/reports.module').then(m => m.ReportsModule) 
+  },
+  { 
+    path: 'admin/simulation',
+    canActivate: [AdminGuard], 
+    loadChildren: () => import('./pages/admin/simulation/simulation.module').then(m => m.SimulationModule) 
+  }
   ];
 
 @NgModule({

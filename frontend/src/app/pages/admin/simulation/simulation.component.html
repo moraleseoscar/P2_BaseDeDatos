@@ -22,16 +22,13 @@
                     <a class="nav-link" routerLink="/admin/actors">Actores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" routerLink="/admin/directors">Directores</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/admin/anuncios">Anuncios</a>
+                    <a class="nav-link" routerLink="/admin/directors">Directores</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/admin/reports">Reportes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/admin/simulation">Simulacion</a>
+                    <a class="nav-link active" routerLink="/admin/simulation">Simulacion</a>
                 </li>
             </ul>
             <a class="nav-link text-light" routerLink="/login">Logout <i class="bi bi-box-arrow-right"></i></a>
@@ -40,35 +37,48 @@
 </nav>
 
 <div class="container mt-5">
-    <p class="h1">Tabla de directores</p>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <button (click)="create()" class="btn btn-primary btn-sm"><i class="bi bi-plus-square"></i> Ingresar nuevo director</button>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%"
-                    cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let actor of actors">
-                            <td>{{actor.id}}</td>
-                            <td>{{actor.nombre}}</td>
-                            <td>
-                                <button (click)="edit(actor.id)" class="btn btn-warning">
-                                    <i class="bi bi-pencil-fill"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <p class="h3">Simulación de visualizaciones.</p>
+            <div class="row">
+                <div class="col">
+                    <label for="fechai_tb2">Ingresar fecha de simulación (YYYY-MM-DD)</label>
+                    <input class="form-control" type="text" id="fecha_inicio_tabla2" name="fechai_tb2">
+                </div>
+                <div class="col">
+                    <label for="fechaf_tb2">Ingresar cantidad de visualizaciones a agregar</label>
+                    <input class="form-control" type="text">
+                </div>
+            </div><br>
+            <div>
+                <button (click)="sendQ5()" class="btn btn-warning">
+                    Simular
+                    <i class="bi bi-cpu-fill"></i>
+                </button>
             </div>
+        </div>
+
+    </div>
+    <h3>
+        Bitacora de actividades en aplicación
+    </h3>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover" id="dataTable6" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Usuario</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let q5 of query5">
+                        <td>{{q5.hora}}</td>
+                        <td>{{q5.visualizaciones}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
