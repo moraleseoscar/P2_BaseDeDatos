@@ -49,6 +49,8 @@ CREATE TABLE peliculas_series(
 	descripcion		VARCHAR(1000),
 	duracion		VARCHAR(50),
 	link_video		VARCHAR(1000),
+	id_usuario		BIGINT,
+	FOREIGN KEY (id_usuario) REFERENCES users(id) ON DELETE CASCADE,
 	FOREIGN KEY (id_director) REFERENCES director(id) ON DELETE CASCADE
 );
 
@@ -101,7 +103,9 @@ CREATE TABLE categoria_pelicula(
 
 CREATE TABLE actores(
 	id			BIGSERIAL PRIMARY KEY,
-	nombre		VARCHAR(255)
+	nombre		VARCHAR(255),
+	id_usuario	BIGINT,
+	FOREIGN KEY (id_usuario) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE actores_peliculas(
@@ -124,9 +128,16 @@ CREATE TABLE anuncios(
 	imagen		VARCHAR(255),
 	background	VARCHAR(255),
 	nombre		VARCHAR(255),
-	descripcion	VARCHAR(255)
-)
+	descripcion	VARCHAR(255),
+	id_usuario	BIGINT,
+	FOREIGN KEY (id_usuario) REFERENCES users(id) ON DELETE CASCADE
+);
 
-Insert into anuncios(imagen, background, nombre, descripcion) values ('https://cdn-3.expansion.mx/dims4/default/a4dc17e/2147483647/strip/true/crop/2096x1430+0+0/resize/1200x819!/format/webp/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F95%2F6c%2F722abfb544dcb4a46b9ca967a1ef%2Fistock-499925476.jpg', 'https://tentulogo.com/wp-content/uploads/2017/06/cocacola-logo.jpg', 'Coca-cola', 'Comercial de mundial');
-
-select * from users
+CREATE TABLE bitacora (
+	id			BIGSERIAL PRIMARY KEY,
+	accion		VARCHAR(255),
+	id_usuario	BIGINT,
+	tabla		VARCHAR(255),
+	fecha		TIMESTAMP,
+	FOREIGN KEY (id_usuario) REFERENCES users(id) ON DELETE CASCADE
+);

@@ -66,8 +66,11 @@
                             <td>{{actor.email}}</td>
                             <td>{{actor.tipo}}</td>
                             <td>
-                                <button (click)="edit(actor.id)" class="btn btn-warning">
+                                <button (click)="edit(actor.id)" class="btn btn-warning m-1">
                                     <i class="bi bi-pencil-fill"></i>
+                                </button>
+                                <button (click)="destroy(actor.id)" class="btn btn-danger">
+                                    <i class="bi bi-trash-fill"></i>
                                 </button>
                             </td>
                         </tr>

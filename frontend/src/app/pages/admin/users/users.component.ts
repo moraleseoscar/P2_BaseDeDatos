@@ -11,6 +11,7 @@ import {
 import {
   GeneralService
 } from 'src/app/services/general.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-users',
@@ -42,6 +43,26 @@ export class UsersComponent implements OnInit {
 
   edit(id: string) {
     this.router.navigate(['admin/user/' + id]);
+  }
+
+  destroy(id: string) {
+    Swal.fire({
+      title: '¡Atención!',
+      text: '¿Está seguro de eliminar este usuario?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.spinner.show();
+        this.general_service.getAuth('delete-user/'+ id).then(() => {
+          this.getActors();
+          this.spinner.hide();
+        });
+      }
+    })
   }
 
 }

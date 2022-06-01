@@ -1,0 +1,224 @@
+--Trigger insertar accion en la tabla "users"
+CREATE FUNCTION INSERTAR_BITACORA() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('INSERTAR', old.id, 'users', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_INSERTUSUARIO AFTER INSERT ON users
+FOR EACH ROW
+EXECUTE PROCEDURE INSERTAR_BITACORA();
+
+--Trigger actualizar accion en la tabla "users"
+CREATE FUNCTION UPDATE_USER() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('ACTUALIZAR', old.id, 'users', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_UPDATEUSUARIO AFTER UPDATE ON users
+FOR EACH ROW
+EXECUTE PROCEDURE UPDATE_USER();
+
+--Trigger eliminar accion en la tabla "users"
+CREATE FUNCTION DELETE_USER() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('ELIMINAR', old.id, 'users', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_DELETEUSUARIO AFTER DELETE ON users
+FOR EACH ROW
+EXECUTE PROCEDURE DELETE_USER();
+
+--Trigger insertar accion en la tabla "perfil"
+CREATE FUNCTION INSERTAR_PERFIL() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('INSERTAR', old.id, 'perfil', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_INSERTPERFIL AFTER INSERT ON perfil
+FOR EACH ROW
+EXECUTE PROCEDURE INSERTAR_PERFIL();
+
+--Trigger actualizar accion en la tabla "perfil"
+CREATE FUNCTION UPDATE_PERFIL() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('ACTUALIZAR', old.id, 'perfil', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_UPDATEPERFIL AFTER UPDATE ON perfil
+FOR EACH ROW
+EXECUTE PROCEDURE UPDATE_PERFIL();
+
+--Trigger eliminar accion en la tabla "perfil"
+CREATE FUNCTION DELETE_PERFIL() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('DELETE', old.id, 'perfil', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_DELETEPERFIL AFTER DELETE ON perfil
+FOR EACH ROW
+EXECUTE PROCEDURE DELETE_PERFIL();
+
+--Trigger insertar accion en la tabla "pelicula series"
+CREATE FUNCTION INSERTAR_PELICULAS_SERIES() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('INSERTAR', old.id, 'peliculas_series', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_INSERTPELICULASSERIES AFTER INSERT ON peliculas_series
+FOR EACH ROW
+EXECUTE PROCEDURE INSERTAR_PELICULAS_SERIES();
+
+--Trigger actualizar accion en la tabla "pelicula series"
+CREATE FUNCTION UPDATE_PELICULAS_SERIES() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('ACTUALIZAR', old.id, 'peliculas_series', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_UPDATEPELICULASSERIES AFTER UPDATE ON peliculas_series
+FOR EACH ROW
+EXECUTE PROCEDURE UPDATE_PELICULAS_SERIES();
+
+--Trigger eliminar accion en la tabla "pelicula series"
+CREATE FUNCTION DELETE_PELICULAS_SERIES() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('DELETE', old.id, 'peliculas_series', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_DELETEPELICULASSERIES AFTER DELETE ON peliculas_series
+FOR EACH ROW
+EXECUTE PROCEDURE DELETE_PELICULAS_SERIES();
+
+--Trigger insertar accion en la tabla "actores"
+CREATE FUNCTION INSERTAR_ACTORES() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('INSERTAR', old.id, 'actores', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_INSERTACTORES AFTER INSERT ON actores
+FOR EACH ROW
+EXECUTE PROCEDURE INSERTAR_ACTORES();
+
+--Trigger actualizar accion en la tabla "actores"
+CREATE FUNCTION UPDATE_ACTORES() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('ACTUALIZAR', old.id, 'actores', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_UPDATEACTORES AFTER UPDATE ON actores
+FOR EACH ROW
+EXECUTE PROCEDURE UPDATE_ACTORES();
+
+--Trigger eliminar accion en la tabla "actores"
+CREATE FUNCTION DELETE_ACTORES() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('DELETE', old.id, 'actores', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_DELETEACTORES AFTER DELETE ON actores
+FOR EACH ROW
+EXECUTE PROCEDURE DELETE_ACTORES();
+
+--Trigger insertar accion en la tabla "anuncios"
+CREATE FUNCTION INSERTAR_ANUNCIOS() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('INSERTAR', old.id, 'anuncios', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_INSERTANUNCIOS AFTER INSERT ON anuncios
+FOR EACH ROW
+EXECUTE PROCEDURE INSERTAR_ANUNCIOS();
+
+--Trigger actualizar accion en la tabla "anuncios"
+CREATE FUNCTION UPDATE_ANUNCIOS() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('ACTUALIZAR', old.id, 'anuncios', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_UPDATEANUNCIOS AFTER UPDATE ON anuncios
+FOR EACH ROW
+EXECUTE PROCEDURE UPDATE_ANUNCIOS();
+
+--Trigger eliminar accion en la tabla "anuncios"
+CREATE FUNCTION DELETE_ANUNCIOS() RETURNS TRIGGER
+AS
+$$
+BEGIN
+INSERT INTO bitacora(accion, id_usuario, tabla, fecha) VALUES('DELETE', old.id, 'anuncios', NOW()::timestamp);
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TR_DELETEANUNCIOS AFTER DELETE ON anuncios
+FOR EACH ROW
+EXECUTE PROCEDURE DELETE_ANUNCIOS();

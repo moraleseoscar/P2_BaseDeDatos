@@ -75,8 +75,8 @@ class MovieSerieController extends Controller
                 return response(['result' => 'fail', 'message' => $mov_serie_validator->errors()], 500);
             }
 
-            /* $data['id_usuario'] = auth()->user()->id;
-            $data['activo'] = true; */
+            $data['id_usuario'] = auth()->user()->id;
+            /*$data['activo'] = true; */
             
             MovieSerie::create($data);
             
