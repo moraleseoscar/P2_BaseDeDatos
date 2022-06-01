@@ -18,6 +18,7 @@ export class ReportsComponent implements OnInit {
   public actors: Array<any> = [];
   public newQuery1: Array<any> = [];
   public newQuery2: Array<any> = [];
+  public newQuery4: Array<any> = [];
 
 
   constructor(private general_service: GeneralService, private router: Router, private spinner: NgxSpinnerService) { }
@@ -102,6 +103,18 @@ export class ReportsComponent implements OnInit {
       this.spinner.hide();
     });
   }
+  getNewQuery4() {
+    let fecha_incial = (<HTMLInputElement>document.getElementById("fecha_inicio_tabla_new_q4_1")).value;
+    let fecha_final = (<HTMLInputElement>document.getElementById("fecha_inicio_tabla_new_q4_2")).value;
+    if(fecha_final && fecha_incial){
+        this.general_service.getAuth(`top-20-left-behind-content/${fecha_incial}/${fecha_final}`).then((res) => {
+        this.newQuery4 = res.data["top20LeftBehindContent"];
+        this.spinner.hide();
+      });
+    }else{
+      console.log("No se ingreso alguna fecha")
+    }
+  }
   sendQ1() {
     this.getQuery1();
   }
@@ -113,6 +126,9 @@ export class ReportsComponent implements OnInit {
   }
   sendNewQuery1(){
     this.getNewQuery1();
+  }
+  sendNewQuery4(){
+    this.getNewQuery4();
   }
   edit(id: string) {
     this.router.navigate(['admin/director/' + id]);

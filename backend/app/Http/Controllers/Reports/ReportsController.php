@@ -150,5 +150,17 @@ class ReportsController extends Controller
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }
     }
+
+    public function getTop20LeftBehindContent($fecha_inicial, $fecha_final) {
+        try {
+            $top20LeftBehindContent = \DB::select(
+                "SELECT * FROM top_20_left_behind_content($fecha_inicial, $fecha_final)
+                "
+            );
+            return response(["result" => 'success', "data" => ["top20LeftBehindContent" => $top20LeftBehindContent]], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
 }
 

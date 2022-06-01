@@ -71,3 +71,5 @@ Route::get('/simulacion/{fecha}/{cantidad}', 'App\Http\Controllers\Reports\Repor
 Route::get('/top-5-content-per-month/{name}/{name2}', 'App\Http\Controllers\Reports\ReportsController@getTop5ContentPerMonth')->middleware('auth:api');
 
 Route::get('/top-10-busquedas', 'App\Http\Controllers\Reports\ReportsController@getTop10Busquedas')->middleware('auth:api');
+
+Route::get('/top-20-left-behind-content/{name}/{name2}', 'App\Http\Controllers\Reports\ReportsController@getTop20LeftBehindContent')->middleware('auth:api');
