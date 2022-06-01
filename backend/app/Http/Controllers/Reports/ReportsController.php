@@ -164,5 +164,15 @@ class ReportsController extends Controller
             return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
         }
     }
+    public function postNewSearchOnDB($search) {
+        try {
+            $search_insert = \DB::insert(
+                "INSERT INTO busquedas (palabra_clave) VALUES ('$search')" 
+            );
+            return response(["result" => 'success', "data" => ["search_insert" => $search_insert]], 200);
+        } catch (\Exception $e) {
+            return response(['result' => 'fail', 'message' => $e->getMessage()], 500);
+        }
+    }
 }
 
