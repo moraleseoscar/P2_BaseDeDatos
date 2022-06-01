@@ -54,7 +54,8 @@ class ReportsController extends Controller
                 INNER JOIN suscripciones sus ON sus.id_usuario= usrs.id
                 WHERE (sus.tipo = '4' OR sus.tipo = '8')
                 GROUP BY act.nombre
-                ORDER BY visto DESC;"
+                ORDER BY visto DESC
+                LIMIT 10;"
             );
             $top10Directors = \DB::select( 
                 "SELECT dir.nombre,  COUNT(cont.id) AS visto FROM contenido cont
@@ -65,7 +66,8 @@ class ReportsController extends Controller
                 INNER JOIN suscripciones sus ON sus.id_usuario= usrs.id
                 WHERE (sus.tipo = '4' OR sus.tipo = '8')
                 GROUP BY dir.nombre
-                ORDER BY visto DESC"
+                ORDER BY visto DESC
+                LIMIT 10"
             );
             return response(["result" => 'success', "data" => ["top10Actors" => $top10Actors, "top10Directors"=>$top10Directors]], 200);
         } catch (\Exception $e) {

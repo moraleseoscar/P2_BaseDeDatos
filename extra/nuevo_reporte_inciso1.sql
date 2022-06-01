@@ -100,8 +100,7 @@ AS $$
 END; $$
 LANGUAGE PLPGSQL;
 
-SELECT * FROM top_5_content_per_month(2022, 5) 
-
-
-
+select * from users
+select * from contenido
+select * from top_5_content_per_month(2022, 4)
 

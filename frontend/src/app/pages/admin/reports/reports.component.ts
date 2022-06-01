@@ -26,7 +26,6 @@ export class ReportsComponent implements OnInit {
     this.getQuery3();
     this.getQuery3_1();
     this.getQuery4();
-    this.getNewQuery1();
   }
 
   getQuery1() {
@@ -83,7 +82,8 @@ export class ReportsComponent implements OnInit {
     }
   }
   getNewQuery1(){
-    let mes = (<HTMLInputElement>document.getElementById("fecha_tabla_new_query_1")).value;
+    let mes = (<HTMLInputElement>document.getElementById("fecha_tabla1")).value;
+    console.log(mes)
     if(mes){
       this.general_service.getAuth(`top-5-content-per-month/2022/${mes}`).then((res) => {
         this.newQuery1 = res.data["top5ContentPerMonth"];
