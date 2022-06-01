@@ -57,7 +57,7 @@ CREATE TABLE favoritos(
 	id_pelicula	BIGINT,
 	id_perfil	BIGINT,
 	FOREIGN KEY (id_pelicula) REFERENCES peliculas_series(id) ON DELETE CASCADE,
-	FOREIGN KEY (id_perfil) REFERENCES users(id) ON DELETE CASCADE
+	FOREIGN KEY (id_perfil) REFERENCES perfil(id) ON DELETE CASCADE
 );
 
 CREATE TABLE contenido(
