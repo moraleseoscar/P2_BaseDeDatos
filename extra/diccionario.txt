@@ -1,7 +1,7 @@
 Usuario -> id, nombres, correo, contraseña, tipo
 Perfil -> id, nombre, id_usuario, activo
 Favoritos -> id, id_pelicula, id_perfil
-Contenido -> id, id_pelicula, id_perfil, tiempo
+Contenido -> id, id_pelicula, id_perfil, tiempo, ultima_vez_visto (INDEX), inicio_ver, estado
 Sugerencias -> id, id_categoria, id_perfil
 Suscripciones -> id, tipo, fecha_inicio, fecha_caducidad, (dia_pago), id_usuario
 Categorias -> id, nombre
@@ -11,3 +11,6 @@ Actores -> id, nombre
 Actores_Peliculas -> id, id_actores, id_pelicula
 Premios -> id, nombre, id_pelicula
 Director -> id, nombre
+Anuncios -> id, imagen, background, nombre, descripcion, id_usuario
+Busquedas -> id, palabra_clave (INDEX)  
+Bitacora -> id, accion , id_usuaio, tabla, fecha 
